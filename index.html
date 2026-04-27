@@ -1,569 +1,168 @@
-<!DOCTYPE html>
+-Formatted HTML-
+ 
+<!DOCTYPE html> 
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nāda Mudrā V8 — Rāga Universe</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#06060e;--bg2:#0c0c1a;--bg3:#121226;
-  --gold:#c8a84b;--gold2:#e8cc80;--gold3:#f5e4b0;
-  --saffron:#d4722a;--sage:#7aaa8a;--lav:#9b8fd4;--rose:#d28ab0;--blue:#5b9bd5;
-  --cream:#ede8dc;--muted:#8a839e;
-  --border:rgba(200,168,75,0.12);--border2:rgba(200,168,75,0.28);
-  --glow:rgba(200,168,75,0.06);
-}
-body.light-theme{
-  --bg:#f6f0e6;--bg2:#ece4d5;--bg3:#dfd6c5;
-  --gold:#8e6518;--gold2:#6a4910;--gold3:#4a3008;
-  --saffron:#a74f14;--sage:#366f49;--lav:#5644a1;--rose:#b05b85;--blue:#3e72b6;
-  --cream:#2b2118;--muted:#6f644f;
-  --border:rgba(120,80,20,0.16);--border2:rgba(120,80,20,0.35);
-  --glow:rgba(180,140,60,0.08);
-}
-*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
-body{background:radial-gradient(circle at top,rgba(200,168,75,0.08),transparent 28%),linear-gradient(180deg,var(--bg),var(--bg2) 42%,var(--bg3));color:var(--cream);font-family:'Outfit',system-ui,sans-serif;min-height:100vh;overflow-x:hidden;font-size:17px;line-height:1.72;transition:background .3s,color .3s;}
-body::after{content:'';position:fixed;top:-180px;left:50%;transform:translateX(-50%);width:920px;height:520px;background:radial-gradient(ellipse,rgba(200,168,75,0.06) 0%,transparent 70%);pointer-events:none;z-index:0;}
-header{position:relative;z-index:10;padding:20px 40px 0;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:14px;}
-.logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:300;color:var(--gold2);letter-spacing:.04em;}
-.logo span{color:var(--gold);font-style:italic;}
-.logo-sub{font-size:11px;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
-.header-right{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-top:6px;}
-.header-links{display:flex;gap:18px;flex-wrap:wrap;}
-.header-links a,.header-links button{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;background:none;border:none;cursor:pointer;font-family:'Outfit',sans-serif;}
-.header-links a:hover,.header-links button:hover{color:var(--gold);}
-.hdr-btn{padding:5px 11px;border-radius:5px;border:1px solid var(--border);background:none;color:var(--muted);font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.06em;cursor:pointer;transition:all .2s;}
-.hdr-btn:hover{border-color:var(--gold);color:var(--gold);}
-.notation-bar{position:relative;z-index:10;padding:10px 40px;display:flex;align-items:center;gap:14px;background:rgba(200,168,75,0.03);border-bottom:1px solid var(--border);flex-wrap:wrap;}
-.nb-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.nb-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
-.ntab{padding:4px 10px;border-radius:12px;border:1px solid var(--border);background:none;color:var(--muted);font-size:11px;cursor:pointer;transition:all .14s;font-family:'Outfit',sans-serif;letter-spacing:.04em;}
-.ntab:hover{border-color:var(--border2);color:var(--cream);}
-.ntab.on{border-color:var(--gold);color:var(--gold2);background:rgba(200,168,75,0.08);}
-.lang-select,.form-select,.text-input{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:8px 10px;color:var(--cream);font-family:'Outfit',sans-serif;font-size:13px;outline:none;}
-.tabs-bar{position:relative;z-index:10;display:flex;border-bottom:1px solid var(--border);padding:0 40px;overflow-x:auto;}
-.tabs-bar::-webkit-scrollbar{height:0;}
-.tab{padding:12px 18px;background:none;border:none;color:var(--muted);font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;white-space:nowrap;}
-.tab:hover{color:var(--cream);} .tab.on{color:var(--gold2);border-bottom-color:var(--gold);} .tab.new-tab{color:var(--sage);} .tab.new-tab.on{color:var(--sage);border-bottom-color:var(--sage);}
-main{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:40px 40px 90px;}
-.pane{display:none;}.pane.on{display:block;}
-.pg-title{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--gold2);margin-bottom:4px;letter-spacing:.02em;}
-.pg-sub{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--muted);margin-bottom:28px;}
-.glabel,.rc-section-title,.sc-title{font-size:11px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
-.glabel::after,.rc-section-title::after,.sc-title::after{content:'';flex:1;height:1px;background:var(--border);}
-.creator-layout,.creator-main{display:grid;grid-template-columns:1fr 320px;gap:26px;align-items:start;}
-.swara-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;margin-bottom:8px;}
-.sw{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 3px 9px;text-align:center;cursor:pointer;transition:all .15s;user-select:none;}
-.sw:hover{border-color:var(--border2);background:var(--glow);} .sw.on{background:rgba(200,168,75,0.14);border-color:var(--gold);box-shadow:0 0 12px rgba(200,168,75,0.14);} .sw.achala{border-top:2px solid rgba(122,170,138,0.7);} .sw.komal{border-top:2px solid rgba(91,155,213,0.7);} .sw.tivra{border-top:2px solid rgba(212,116,42,0.7);}
-.sn{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--cream);display:block;line-height:1.1;}
-.sn-lang,.sv,.sw-western{font-size:9px;color:var(--muted);display:block;margin-top:2px;}
-.sw-western{color:var(--gold);} .legend,.act-row,.kriti-filters,.dance-tabs,.const-controls,.sacred-filters,.genre-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
-.leg-item,.nl-item,.q-rasa,.mini-note{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);} .leg-bar,.nl-bar{width:16px;height:2px;border-radius:1px;}
-.scale-cards,.rr-scales,.dual-grid-wrap,.rc-result-grid,.sacred-grid,.genre-grid,.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.scale-card,.sidebar-card,.rc-section,.compare-panel,.overview-card,.genre-card,.sacred-card,.mudra-card,.sec-card,.tala-card,.xref-result-section,.xref-panel,.mela-chakra,.raga-result{background:var(--bg2);border:1px solid var(--border);border-radius:10px;}
-.scale-card,.sidebar-card,.rc-section,.compare-panel,.overview-card,.genre-card,.sacred-card,.mudra-card,.sec-card,.tala-card,.xref-result-section,.xref-panel{padding:14px 16px;}
-.sc-lbl,.rr-scale-lbl,.mc-form,.sec-row-lbl,.genre-lbl,.sacred-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:4px;}
-.sc-val,.rr-name,.rc-result-name,.genre-name,.sacred-name{font-family:'Cormorant Garamond',serif;color:var(--gold2);} .sc-val{font-size:20px;min-height:28px;} .rr-name,.rc-result-name{font-size:38px;line-height:1;} .rr-scale-val,.rc-cell-val.mono{font-family:'DM Mono',monospace;font-size:13px;color:var(--gold2);} .sc-alt,.rr-scale-alt{font-size:11px;color:var(--lav);margin-top:3px;font-family:'DM Mono',monospace;}
-.btn,.kriti-btn,.rr-ai-btn,.rr-fav-btn,.rr-share-btn,.rr-compare-btn,.drone-btn,.tala-btn,.vaadi-btn,.gk-toggle,.dtab{padding:7px 14px;border-radius:6px;border:1px solid var(--border2);background:none;color:var(--cream);font-family:'Outfit',sans-serif;font-size:12px;cursor:pointer;transition:all .15s;}
-.btn:hover,.kriti-btn:hover,.rr-ai-btn:hover,.rr-fav-btn:hover,.rr-share-btn:hover,.rr-compare-btn:hover,.drone-btn:hover,.tala-btn:hover,.vaadi-btn:hover,.gk-toggle:hover,.dtab:hover{background:rgba(200,168,75,0.08);border-color:var(--gold);} .btn.prime{background:rgba(200,168,75,0.12);border-color:var(--gold);color:var(--gold2);} .btn.sage{border-color:rgba(122,170,138,0.4);color:var(--sage);} .dtab.on{border-color:var(--gold);color:var(--gold2);background:rgba(200,168,75,0.08);}
-.q-list,.fav-list,.xref-item-list,.wheel-raga-list{display:flex;flex-direction:column;gap:6px;}
-.q-item,.fav-item,.xref-item,.wheel-raga-item,.saved-raga-card,.mela-cell{padding:8px 10px;border-radius:7px;border:1px solid var(--border);cursor:pointer;transition:all .14s;display:flex;justify-content:space-between;align-items:center;gap:10px;}
-.q-item:hover,.fav-item:hover,.xref-item:hover,.wheel-raga-item:hover,.saved-raga-card:hover,.mela-cell:hover{border-color:var(--gold);background:var(--glow);} .q-name,.xref-item-name,.saved-raga-name,.mela-n,.wheel-raga-title{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--cream);} .q-conf{font-size:11px;color:var(--gold);} .fav-empty,.xref-empty{font-size:13px;color:var(--muted);font-style:italic;}
-.raga-result{overflow:hidden;display:none;animation:fadeUp .35s ease;} .raga-result.on{display:block;} @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.rr-hero{background:linear-gradient(135deg,#0e0820 0%,#1a0e30 42%,#2a1508 100%);padding:20px 24px 16px;border-bottom:1px solid var(--border);} body.light-theme .rr-hero{background:linear-gradient(135deg,#eee2c8,#eadff0 44%,#f7e5cf);}
-.rr-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;} .rr-meta{display:grid;grid-template-columns:repeat(4,1fr);} .rr-cell{padding:10px 16px;border-right:1px solid var(--border);} .rr-cell:last-child{border-right:none;} .rr-cell-lbl,.rc-cell-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:2px;} .rr-cell-val,.rc-cell-val{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--cream);} .rr-body{padding:16px 24px;}
-.rasa-badge,.genre-badge,.sacred-badge{padding:4px 12px;border-radius:20px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;border:1px solid;white-space:nowrap;}
-.conf-row{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted);margin-top:8px;} .conf-bar{flex:1;height:1.5px;background:var(--border);border-radius:1px;overflow:hidden;} .conf-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:1px;transition:width .6s ease;}
-.gamaka-row,.info-box,.export-card,.drone-bar,.wheel-info-panel{background:var(--bg3);border-radius:8px;padding:12px 14px;border:1px solid var(--border);} .gamaka-pills,.kriti-link-chips,.sec-langs{display:flex;flex-wrap:wrap;gap:6px;} .gk-pill,.sec-lang-item,.kriti-pill,.arch-pill{padding:3px 9px;border-radius:12px;font-size:10px;border:1px solid rgba(155,143,212,0.25);color:var(--lav);background:rgba(155,143,212,0.07);}
-.rr-action-row,.saved-raga-actions,.tala-btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;} .rr-ai-box{background:rgba(155,143,212,0.06);border:1px solid rgba(155,143,212,0.2);border-radius:8px;padding:16px 18px;margin-top:10px;display:none;font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.8;color:var(--cream);white-space:pre-wrap;} .rr-ai-box.on{display:block;}
-.piano-wrap,.constellation-wrap,.wheel-canvas-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px;overflow:hidden;} .piano-svg-container{min-width:600px;} .piano-key-white{fill:var(--cream);stroke:#888;stroke-width:.5;cursor:pointer;} .piano-key-black{fill:#1a1a28;stroke:#000;stroke-width:.5;cursor:pointer;} .piano-key-white.active{fill:var(--gold);} .piano-key-black.active{fill:var(--saffron);} .piano-note-label{font-size:7px;font-family:'DM Mono',monospace;fill:var(--muted);text-anchor:middle;pointer-events:none;} .piano-swara-label{font-size:8px;font-family:'Cormorant Garamond',serif;fill:var(--gold2);text-anchor:middle;pointer-events:none;font-weight:600;}
-.ms-grid,.mudra-grid,.swara-engine-grid,.tala-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;} .ms-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:18px 20px;} .ms-title{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--gold2);margin-bottom:6px;} .ms-body{font-size:13px;color:var(--muted);line-height:1.7;}
-.mudra-card{border-left:3px solid var(--gold);} .mc-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);margin-bottom:3px;} .mc-sanskrit{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--muted);font-style:italic;margin-bottom:4px;} .mc-desc,.mc-usage,.mc-benefit,.mc-neuro{font-size:12px;line-height:1.6;margin-bottom:6px;} .mc-usage{color:var(--gold);} .mc-benefit{color:var(--sage);border-top:1px solid rgba(122,170,138,0.12);padding-top:6px;} .mc-neuro{color:var(--lav);font-style:italic;}
-.sec-header{padding:14px 18px 12px;border-bottom:1px solid var(--border);} .sec-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px;} .sec-carnatic{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--gold2);} .sec-western{font-size:14px;color:var(--cream);} .sec-solfege{font-size:12px;color:var(--lav);} .sec-body{padding:12px 18px 14px;} .sec-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px;gap:8px;} .sec-row-val{font-size:12px;color:var(--cream);text-align:right;line-height:1.45;} .shruti-pip-row{display:flex;gap:3px;flex-wrap:wrap;margin-top:6px;} .shruti-pip{width:10px;height:10px;border-radius:2px;background:var(--border);border:1px solid rgba(200,168,75,.1);} .shruti-pip.active{background:var(--gold);border-color:var(--gold);}
-.xref-layout,.time-wheel-wrap,.compare-layout{display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:start;} .compare-layout{grid-template-columns:1fr 60px 1fr;gap:0;} .compare-middle{display:flex;align-items:center;justify-content:center;padding-top:40px;} .compare-vs{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--muted);font-style:italic;}
-.compare-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border);} .compare-row:last-child{border-bottom:none;} .compare-row-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-top:2px;} .compare-val{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--cream);} .compare-val.diff{color:var(--saffron);} .compare-sel{width:100%;margin-bottom:12px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 10px;color:var(--cream);}
-.swara-mini-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;} .sw-mini{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:6px 3px;text-align:center;cursor:pointer;transition:all .12s;} .sw-mini.on-a{background:rgba(200,168,75,0.18);border-color:var(--gold);} .sw-mini.on-v{background:rgba(91,155,213,0.18);border-color:rgba(91,155,213,0.8);} .sn2{font-family:'Cormorant Garamond',serif;font-size:12px;color:var(--cream);display:block;} .sw2{font-size:8px;color:var(--muted);display:block;}
-.sacred-card{display:flex;flex-direction:column;gap:8px;} .sacred-name{font-size:24px;} .sacred-text{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cream);line-height:1.7;} .sacred-note{font-size:12px;color:var(--muted);} .sacred-ref{font-size:12px;color:var(--sage);} .genre-card{padding:16px 18px;} .genre-name{font-size:24px;} .genre-desc{font-size:13px;color:var(--muted);line-height:1.7;}
-.share-toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--bg2);border:1px solid var(--gold);border-radius:8px;padding:10px 20px;font-size:12px;color:var(--gold2);z-index:1000;opacity:0;transition:all .3s;pointer-events:none;} .share-toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
-@media(max-width:920px){header,main,.tabs-bar,.notation-bar{padding-left:20px;padding-right:20px;} .creator-layout,.creator-main,.xref-layout,.time-wheel-wrap,.compare-layout{grid-template-columns:1fr;} .compare-middle{display:none;} .swara-grid{grid-template-columns:repeat(6,1fr);} .rr-meta,.scale-cards,.rr-scales,.dual-grid-wrap,.rc-result-grid,.sacred-grid,.genre-grid,.overview-grid{grid-template-columns:1fr;} }
-@media(max-width:560px){.swara-grid{grid-template-columns:repeat(4,1fr);} .rr-meta{grid-template-columns:1fr;} .rr-cell{border-right:none;border-bottom:1px solid var(--border);} }
-@media print{body{background:#fff!important;color:#000!important;} header,.notation-bar,.tabs-bar,.act-row,.sidebar-card,.hdr-btn,.drone-bar,.const-controls,.rr-action-row{display:none!important;} .pane{display:none!important;} .pane.on{display:block!important;} main{padding:0!important;} .raga-result{display:block!important;border:1px solid #ccc!important;} }
-</style>
-</head>
-<body>
-<div class="share-toast" id="shareToast">Link copied</div>
-<header>
-  <div>
-    <div class="logo">Nāda <span>Mudrā</span> <sup style="font-size:11px;color:var(--sage)">V8</sup></div>
-    <div class="logo-sub">Rāga · Mudrā · Sacred Sound · Language · Creation</div>
-  </div>
-  <div class="header-right">
-    <div class="header-links">
-      <button onclick="setTab('finder')">Rāga Finder</button>
-      <button onclick="setTab('creator')">Rāga Creator</button>
-      <button onclick="setTab('mudra')">Mudrā</button>
-      <button onclick="setTab('sacred')">Sacred References</button>
-    </div>
-    <button class="hdr-btn" onclick="toggleTheme()" id="themeBtn">☀ Light</button>
-    <button class="hdr-btn" onclick="window.print()">⎙ Print</button>
-  </div>
-</header>
-<div class="notation-bar">
-  <div class="nb-group">
-    <span class="nb-label">Script</span>
-    <select class="lang-select" id="langSelect" onchange="updateLangDisplay()">
-      <option value="roman">Carnatic Roman</option>
-      <option value="sanskrit">संस्कृत</option>
-      <option value="hindi">हिंदी</option>
-      <option value="telugu">తెలుగు</option>
-      <option value="tamil">தமிழ்</option>
-      <option value="kannada">ಕನ್ನಡ</option>
-      <option value="malayalam">മലയാളം</option>
-      <option value="bengali">বাংলা</option>
-      <option value="western">Western</option>
-      <option value="solfege">Solfège</option>
-    </select>
-  </div>
-  <div class="nb-group">
-    <span class="nb-label">Show also</span>
-    <button class="ntab on" id="nt-western" onclick="toggleNotation('western',this)">Western</button>
-    <button class="ntab on" id="nt-solfege" onclick="toggleNotation('solfege',this)">Solfège</button>
-  </div>
-</div>
-<div class="tabs-bar">
-  <button class="tab on" onclick="setTab('finder')">Rāga Finder</button>
-  <button class="tab" onclick="setTab('swara')">Swara Engine</button>
-  <button class="tab" onclick="setTab('constellation')">Constellation</button>
-  <button class="tab" onclick="setTab('library')">Rāga Library</button>
-  <button class="tab" onclick="setTab('mudra')">Mudrā Encyclopedia</button>
-  <button class="tab" onclick="setTab('xref')">Cross-Reference</button>
-  <button class="tab" onclick="setTab('genres')">Genres</button>
-  <button class="tab new-tab" onclick="setTab('sacred')">Sacred References</button>
-  <button class="tab new-tab" onclick="setTab('tala')">Tala</button>
-  <button class="tab new-tab" onclick="setTab('timewheel')">Time Wheel</button>
-  <button class="tab new-tab" onclick="setTab('melakarta')">72 Melakarta</button>
-  <button class="tab new-tab" onclick="setTab('compare')">Compare</button>
-  <button class="tab new-tab" onclick="setTab('creator')">✦ Rāga Creator</button>
-</div>
-<main>
-
-<div class="pane on" id="pane-finder">
-  <div class="pg-title">Rāga Finder</div>
-  <div class="pg-sub">Select swaras to identify ragas, explore possible combinations, and print multilingual output</div>
-  <div class="drone-bar"><span class="nb-label">Sa Drone</span><button class="drone-btn" id="droneBtn" onclick="toggleDrone()">▶ Start Drone</button><span class="mini-note">Continuous tonic support</span></div>
-  <div class="creator-layout">
-    <div>
-      <div class="glabel">Select Swaras</div>
-      <div class="swara-grid" id="swaraGrid"></div>
-      <div class="legend">
-        <div class="leg-item"><div class="leg-bar" style="background:rgba(122,170,138,0.7)"></div>Achala</div>
-        <div class="leg-item"><div class="leg-bar" style="background:rgba(91,155,213,0.7)"></div>Komal</div>
-        <div class="leg-item"><div class="leg-bar" style="background:rgba(212,116,42,0.7)"></div>Tivra</div>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Nāda Mudrā V8.1 — Rāga Universe</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+      <style> :root{ --bg:#06060e; --bg2:#0d1020; --bg3:#151a30; --gold:#c8a84b; --gold2:#ead18d; --cream:#f2ecdf; --muted:#9a93ab; --sage:#79a98b; --lav:#9a8ddb; --saffron:#d57a33; --blue:#5f8fd8; --rose:#c07aa0; --border:rgba(200,168,75,.16); --border2:rgba(200,168,75,.32); --glow:rgba(200,168,75,.08); --watermark-opacity:.055; } *{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth} body{ font-family:'Outfit',system-ui,sans-serif; background: radial-gradient(circle at 20% 15%, rgba(200,168,75,.08), transparent 22%), radial-gradient(circle at 80% 20%, rgba(122,169,139,.08), transparent 20%), radial-gradient(circle at 50% 70%, rgba(154,141,219,.08), transparent 24%), linear-gradient(180deg,var(--bg),var(--bg2) 45%,var(--bg3)); color:var(--cream); min-height:100vh; font-size:19px; line-height:1.75; overflow-x:hidden; position:relative; } body::before{ content:"♪ ♫ ♪"; position:fixed; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:140px; letter-spacing:18px; color:rgba(234,209,141,var(--watermark-opacity)); pointer-events:none; z-index:0; transform:translateY(-10px); } a{color:inherit} button,input,select,textarea{font:inherit} header, .topbar, .tabs, main{position:relative;z-index:1} header{ padding:24px 32px 8px; display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap; border-bottom:1px solid var(--border); background:rgba(6,6,14,.35); backdrop-filter:blur(8px); } .brand-wrap{display:flex;gap:16px;align-items:flex-start} .logo-box{ width:58px;height:58px;border-radius:14px; border:1px solid var(--border2); display:grid;place-items:center; background:linear-gradient(135deg,rgba(200,168,75,.14),rgba(154,141,219,.12)); font-size:28px;color:var(--gold2); flex-shrink:0; } .brand-title{ font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:400; color:var(--gold2); line-height:1; } .brand-title span{color:var(--gold);font-style:italic} .brand-sub{ color:var(--muted); margin-top:6px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; } .header-actions{display:flex;gap:10px;flex-wrap:wrap} .btn,.small-btn,.tab{ border:1px solid var(--border2); background:rgba(255,255,255,.02); color:var(--cream); cursor:pointer; transition:.2s ease; } .btn:hover,.small-btn:hover,.tab:hover{border-color:var(--gold);background:var(--glow)} .small-btn{ padding:8px 12px; border-radius:8px; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); } .topbar{ padding:12px 32px; display:flex; gap:14px; flex-wrap:wrap; align-items:center; border-bottom:1px solid var(--border); background:rgba(200,168,75,.03); } .field-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap} .label{ color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.12em; } select,input[type="text"],textarea{ background:var(--bg2); color:var(--cream); border:1px solid var(--border); border-radius:10px; padding:10px 12px; outline:none; } .tabs{ display:flex; gap:4px; overflow:auto; padding:0 24px; border-bottom:1px solid var(--border); } .tabs::-webkit-scrollbar{height:0} .tab{ white-space:nowrap; padding:14px 18px; border:none; border-bottom:2px solid transparent; border-radius:0; color:var(--muted); background:none; font-size:13px; text-transform:uppercase; letter-spacing:.12em; } .tab.active{ color:var(--gold2); border-bottom-color:var(--gold); } main{ max-width:1280px; margin:0 auto; padding:32px; } .pane{display:none} .pane.active{display:block} .title{ font-family:'Cormorant Garamond',serif; font-size:44px; color:var(--gold2); font-weight:400; margin-bottom:6px; } .subtitle{ font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--muted); font-style:italic; margin-bottom:24px; } .grid-2{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:24px} .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px} .grid-auto{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px} .card{ background:rgba(13,16,32,.9); border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.16); } .section-label{ font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.16em; margin-bottom:10px; display:flex; align-items:center; gap:10px; } .section-label::after{content:"";height:1px;flex:1;background:var(--border)} .swara-grid{ display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); gap:8px; } .swara{ padding:12px 8px; border-radius:12px; border:1px solid var(--border); background:var(--bg2); text-align:center; cursor:pointer; user-select:none; transition:.15s ease; } .swara:hover{border-color:var(--gold)} .swara.active{background:rgba(200,168,75,.14);border-color:var(--gold)} .swara .main{ display:block; font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--cream); } .swara .sub{display:block;font-size:11px;color:var(--muted);margin-top:2px} .action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px} .btn{ padding:10px 16px; border-radius:10px; font-size:14px; } .btn.primary{background:rgba(200,168,75,.12);border-color:var(--gold);color:var(--gold2)} .btn.sage{border-color:rgba(121,169,139,.45);color:var(--sage)} .btn.rose{border-color:rgba(192,122,160,.45);color:var(--rose)} .result-title{ font-family:'Cormorant Garamond',serif; font-size:36px; color:var(--gold2); margin-bottom:4px; } .muted{color:var(--muted)} .mono{font-family:'DM Mono',monospace} .pill{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:11px; border:1px solid var(--border2); color:var(--gold2); margin:4px 6px 0 0; } .sidebar-list{display:flex;flex-direction:column;gap:8px} .sidebar-item{ padding:10px 12px; border:1px solid var(--border); border-radius:10px; cursor:pointer; background:var(--bg2); } .sidebar-item:hover{border-color:var(--gold)} .long-output{ white-space:pre-wrap; max-height:520px; overflow:auto; padding-right:6px; } .search-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px} .search-row input{min-width:240px;flex:1} .watermark-note{ font-size:12px; color:var(--muted); margin-top:8px; } .audio-strip{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; } .footer-actions{ position:sticky; bottom:10px; display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; margin-top:20px; z-index:2; } .hidden{display:none !important} @media (max-width: 980px){ .grid-2{grid-template-columns:1fr} .grid-3{grid-template-columns:1fr} .swara-grid{grid-template-columns:repeat(4,minmax(0,1fr))} main{padding:20px} header,.topbar{padding-left:20px;padding-right:20px} } @media print{ body{background:#fff !important;color:#000 !important;font-size:13pt} body::before{opacity:.05;color:#999} .tabs,.topbar,.header-actions,.action-row,.footer-actions,.sidebar-only{display:none !important} header{border-bottom:1px solid #ccc;background:#fff !important} .pane{display:none !important} .pane.active{display:block !important} .card{border:1px solid #ccc;background:#fff !important;box-shadow:none} .title,.result-title,.brand-title{color:#000 !important} .subtitle,.muted,.brand-sub{color:#444 !important} } </style>
+   </head>
+   <body>
+      <header>
+         <div class="brand-wrap">
+            <div class="logo-box">🎼</div>
+            <div>
+               <div class="brand-title">Nāda <span>Mudrā</span> V8.1</div>
+               <div class="brand-sub">Rāga · Mudrā · Sacred References · Genre · Creation</div>
+            </div>
+         </div>
+         <div class="header-actions"> <button class="small-btn" id="themeBtn">Light</button> <button class="small-btn" id="printBtn">Print</button> <button class="small-btn" id="saveBtn">Save</button> <button class="small-btn" id="shareBtn">Share</button> </div>
+      </header>
+      <div class="topbar">
+         <div class="field-row">
+            <span class="label">Script</span> 
+            <select id="languageSelect">
+               <option value="roman">Carnatic Roman</option>
+               <option value="sanskrit">संस्कृत</option>
+               <option value="hindi">हिंदी</option>
+               <option value="telugu">తెలుగు</option>
+               <option value="tamil">தமிழ்</option>
+               <option value="kannada">ಕನ್ನಡ</option>
+               <option value="malayalam">മലയാളം</option>
+            </select>
+         </div>
+         <div class="field-row">
+            <span class="label">Genre</span> 
+            <select id="globalGenreSelect">
+               <option>Classical</option>
+               <option>Semi-Classical</option>
+               <option>Folk</option>
+               <option>Light</option>
+               <option>Soft</option>
+               <option>Filmy</option>
+               <option>Devotional</option>
+               <option>Meditative</option>
+            </select>
+         </div>
+         <div class="field-row">
+            <span class="label">Watermark</span> 
+            <select id="watermarkTone">
+               <option value=".055">Soft</option>
+               <option value=".08">Medium</option>
+               <option value=".11">Visible</option>
+            </select>
+         </div>
       </div>
-      <div class="scale-cards">
-        <div class="scale-card"><div class="sc-lbl">Arohanam</div><div class="sc-val" id="arohVal">—</div><div class="sc-alt" id="arohAlt"></div></div>
-        <div class="scale-card"><div class="sc-lbl">Avarohanam</div><div class="sc-val" id="avarohVal">—</div><div class="sc-alt" id="avarohAlt"></div></div>
-      </div>
-      <div class="act-row">
-        <button class="btn prime" onclick="identifyRaga()">✦ Identify Rāga</button>
-        <button class="btn" onclick="clearSwaras()">Clear</button>
-        <button class="btn sage" onclick="randomRaga()">Random Rāga</button>
-      </div>
-      <div class="raga-result" id="ragaResult">
-        <div class="rr-hero">
-          <div class="rr-top">
-            <div><div class="rr-name" id="rrName">—</div><div class="pg-sub" style="margin:4px 0 0;font-size:14px;">Library / Generated Match</div></div>
-            <div class="rasa-badge" id="rrRasaBadge" style="border-color:var(--gold);color:var(--gold)"></div>
-          </div>
-          <div class="conf-row"><span>Confidence</span><div class="conf-bar"><div class="conf-fill" id="confFill" style="width:0%"></div></div><span id="confPct">0%</span></div>
-        </div>
-        <div class="rr-meta">
-          <div class="rr-cell"><div class="rr-cell-lbl">System</div><div class="rr-cell-val" id="rrSystem">—</div></div>
-          <div class="rr-cell"><div class="rr-cell-lbl">Parent</div><div class="rr-cell-val" id="rrMela">—</div></div>
-          <div class="rr-cell"><div class="rr-cell-lbl">Time</div><div class="rr-cell-val" id="rrTime">—</div></div>
-          <div class="rr-cell"><div class="rr-cell-lbl">Mood</div><div class="rr-cell-val" id="rrMood">—</div></div>
-        </div>
-        <div class="rr-body">
-          <div class="rr-scales">
-            <div class="scale-card"><div class="rr-scale-lbl">Arohanam</div><div class="rr-scale-val" id="rrAroh">—</div><div class="rr-scale-alt" id="rrArohAlt"></div></div>
-            <div class="scale-card"><div class="rr-scale-lbl">Avarohanam</div><div class="rr-scale-val" id="rrAvaroh">—</div><div class="rr-scale-alt" id="rrAvarohAlt"></div></div>
-          </div>
-          <div class="gamaka-row"><div class="rr-scale-lbl">Characteristic Gamakas</div><div class="gamaka-pills" id="rrGamakas"></div></div>
-          <div class="rr-action-row">
-            <button class="rr-ai-btn" onclick="loadAIInsight()">✦ Deep Insight</button>
-            <button class="rr-fav-btn" onclick="toggleFavourite()" id="favBtn">♡ Favourite</button>
-            <button class="rr-share-btn" onclick="shareRaga()">⤴ Share</button>
-            <button class="rr-compare-btn" onclick="addToCompare()">⚖ Compare</button>
-          </div>
-          <div class="rr-ai-box" id="aiBox"></div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="sidebar-card">
-        <div class="sc-title">Favourites</div>
-        <div class="fav-list" id="favList"><div class="fav-empty">No favourites yet</div></div>
-      </div>
-      <div class="sidebar-card">
-        <div class="sc-title">Quick Ragas</div>
-        <div class="q-list" id="quickRagaList"></div>
-      </div>
-      <div class="sidebar-card">
-        <div class="sc-title">Theory Scope</div>
-        <div class="mini-note">Carnatic: 72 Melakarta + thousands of Janya possibilities</div>
-        <div class="mini-note">Hindustani: 10 Thaats + active and derived ragas</div>
-        <div class="mini-note">Historical: Rāga-Rāgini, Guru Granth, Dhyāna traditions</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="pane" id="pane-swara">
-  <div class="pg-title">Swara Engine</div>
-  <div class="pg-sub">Detailed swara positions, language labels, shruti references, and note relationships</div>
-  <div class="swara-engine-grid" id="swaraEngineGrid"></div>
-</div>
-
-<div class="pane" id="pane-constellation">
-  <div class="pg-title">Rāga Constellation</div>
-  <div class="pg-sub">Visual relationship map by swara proximity and rasa affinity</div>
-  <div class="const-controls">
-    <button class="btn prime" onclick="renderConstellation()">Render Map</button>
-  </div>
-  <div class="constellation-wrap"><canvas id="constellationCanvas"></canvas></div>
-  <div class="info-box" id="constInfoBox">Hover or click a node to load a raga.</div>
-</div>
-
-<div class="pane" id="pane-library">
-  <div class="pg-title">Rāga Library</div>
-  <div class="pg-sub">Carnatic, Hindustani, historical classifications, and expandable raga universe structure</div>
-  <div class="kriti-filters">
-    <input class="text-input" id="librarySearch" placeholder="Search ragas, system, mood..." oninput="filterLibrary()" style="width:240px;">
-    <select class="form-select" id="librarySystemFilter" onchange="filterLibrary()">
-      <option value="">All Systems</option>
-      <option value="Carnatic">Carnatic</option>
-      <option value="Hindustani">Hindustani</option>
-      <option value="Historical">Historical</option>
-    </select>
-    <select class="form-select" id="libraryTypeFilter" onchange="filterLibrary()">
-      <option value="">All Types</option>
-      <option value="Melakarta">Melakarta</option>
-      <option value="Janya">Janya</option>
-      <option value="Thaat-linked">Thaat-linked</option>
-      <option value="Traditional">Traditional</option>
-    </select>
-  </div>
-  <div class="genre-grid" id="libraryGrid"></div>
-</div>
-
-<div class="pane" id="pane-mudra">
-  <div class="pg-title">Mudrā Encyclopedia</div>
-  <div class="pg-sub">Asamyuta Hastas, Samyuta Hastas, dance-form variations, and symbolic usage across classical traditions</div>
-  <div class="dance-tabs">
-    <button class="dtab on" onclick="filterMudra('all',this)">All</button>
-    <button class="dtab" onclick="filterMudra('asamyuta',this)">Asamyuta</button>
-    <button class="dtab" onclick="filterMudra('samyuta',this)">Samyuta</button>
-    <button class="dtab" onclick="filterMudra('bharatanatyam',this)">Bharatanatyam</button>
-    <button class="dtab" onclick="filterMudra('kathak',this)">Kathak</button>
-    <button class="dtab" onclick="filterMudra('odissi',this)">Odissi</button>
-    <button class="dtab" onclick="filterMudra('kuchipudi',this)">Kuchipudi</button>
-    <button class="dtab" onclick="filterMudra('mohiniyattam',this)">Mohiniyattam</button>
-    <button class="dtab" onclick="filterMudra('kathakali',this)">Kathakali</button>
-  </div>
-  <div class="mudra-grid" id="mudraGrid"></div>
-</div>
-
-<div class="pane" id="pane-xref">
-  <div class="pg-title">Cross-Reference</div>
-  <div class="pg-sub">Map swaras to ragas, ragas to mudras, and ragas to sacred references</div>
-  <div class="xref-layout">
-    <div class="xref-panel"><div class="sc-title">Select Swara</div><div class="xref-item-list" id="xrefSwaraPills"></div></div>
-    <div class="xref-result-section" id="xrefResults"><div class="xref-empty">Select a swara to explore connected ragas and references.</div></div>
-  </div>
-</div>
-
-<div class="pane" id="pane-genres">
-  <div class="pg-title">Genres & Usage</div>
-  <div class="pg-sub">Classification layer for classical, semi-classical, folk, light, soft, filmy, devotional, and meditative use</div>
-  <div class="genre-grid" id="genreGrid"></div>
-</div>
-
-<div class="pane" id="pane-sacred">
-  <div class="pg-title">Sacred References</div>
-  <div class="pg-sub">Mantras, shlokas, metaphorical verses, beejaksharas, and curated spiritual reference notes</div>
-  <div class="sacred-filters">
-    <input class="text-input" id="sacredSearch" placeholder="Search mantras, texts, beejaksharas..." oninput="filterSacred()" style="width:260px;">
-    <select class="form-select" id="sacredTypeFilter" onchange="filterSacred()">
-      <option value="">All Types</option>
-      <option value="Mantra">Mantra</option>
-      <option value="Shloka">Shloka</option>
-      <option value="Vedic">Vedic</option>
-      <option value="Beejakshara">Beejakshara</option>
-      <option value="Reference">Reference</option>
-    </select>
-  </div>
-  <div class="sacred-grid" id="sacredGrid"></div>
-</div>
-
-<div class="pane" id="pane-tala">
-  <div class="pg-title">Tala & Beat Visualiser</div>
-  <div class="pg-sub">Core beat cycles for practice and structural reference</div>
-  <div class="tala-grid" id="talaGrid"></div>
-</div>
-
-<div class="pane" id="pane-timewheel">
-  <div class="pg-title">Rāga Time Wheel</div>
-  <div class="pg-sub">24-hour prahar orientation for curated ragas</div>
-  <div class="time-wheel-wrap">
-    <div class="wheel-canvas-wrap"><canvas id="timeWheelCanvas" width="480" height="480"></canvas></div>
-    <div class="wheel-info-panel" id="wheelInfoPanel">Click a segment to view associated ragas.</div>
-  </div>
-</div>
-
-<div class="pane" id="pane-melakarta">
-  <div class="pg-title">72 Melakarta Chart</div>
-  <div class="pg-sub">Core Carnatic parent-raga architecture</div>
-  <div id="melaLayout"></div>
-</div>
-
-<div class="pane" id="pane-compare">
-  <div class="pg-title">Rāga Comparison</div>
-  <div class="pg-sub">Compare scales, systems, rasa, and usage side by side</div>
-  <div class="compare-layout">
-    <div class="compare-panel">
-      <select class="compare-sel" id="compareSelA" onchange="renderCompare()"><option value="">— Select Raga A —</option></select>
-      <div id="compareBodyA"></div>
-    </div>
-    <div class="compare-middle"><div class="compare-vs">vs</div></div>
-    <div class="compare-panel">
-      <select class="compare-sel" id="compareSelB" onchange="renderCompare()"><option value="">— Select Raga B —</option></select>
-      <div id="compareBodyB"></div>
-    </div>
-  </div>
-</div>
-
-<div class="pane" id="pane-creator">
-  <div class="pg-title">✦ Rāga Creator</div>
-  <div class="pg-sub">Create new raga combinations while preserving the existing creator-style workflow</div>
-  <div class="creator-main">
-    <div>
-      <div class="rc-section"><div class="rc-section-title">Arohanam</div><div class="swara-mini-grid" id="arohGrid"></div></div>
-      <div class="rc-section"><div class="rc-section-title">Avarohanam</div><div class="swara-mini-grid" id="avarohGrid"></div></div>
-      <div class="dual-grid-wrap">
-        <div class="rc-section"><div class="rc-section-title">Vādi & Samvādi</div><div id="vaadiRow" class="genre-row" style="margin-bottom:10px"></div><div id="samvaadiRow" class="genre-row"></div></div>
-        <div class="rc-section"><div class="rc-section-title">Gamakas</div><div id="gamakaSelectGrid" class="genre-row"></div></div>
-      </div>
-      <div class="dual-grid-wrap">
-        <div class="rc-section"><div class="rc-section-title">Name</div><input class="text-input" id="creatorName" placeholder="Optional custom name"></div>
-        <div class="rc-section"><div class="rc-section-title">Rasa</div><select class="form-select" id="creatorRasa" style="width:100%"><option value="">— choose —</option><option>Bhakti</option><option>Karuna</option><option>Shringara</option><option>Veera</option><option>Shanta</option><option>Hasya</option><option>Adbhuta</option></select></div>
-      </div>
-      <div class="dual-grid-wrap">
-        <div class="rc-section"><div class="rc-section-title">Genre</div><select class="form-select" id="creatorGenre" style="width:100%"><option value="">— choose —</option><option>Classical</option><option>Semi-Classical</option><option>Folk</option><option>Light</option><option>Soft</option><option>Filmy</option><option>Devotional</option><option>Meditative</option></select></div>
-        <div class="rc-section"><div class="rc-section-title">Language Output</div><div class="mini-note">Uses current script selection while displaying/exporting.</div></div>
-      </div>
-      <div class="act-row">
-        <button class="btn prime" onclick="generateRaga()">✦ Generate Rāga</button>
-        <button class="btn" onclick="clearCreator()">Clear</button>
-        <button class="btn sage" onclick="saveRaga()">Save Rāga</button>
-        <button class="btn" onclick="exportRaga()">⬇ Download JSON</button>
-      </div>
-      <div class="raga-result" id="rcResultBox" style="display:none;">
-        <div class="rr-hero"><div class="rc-result-name" id="rcName">—</div></div>
-        <div class="rr-body">
-          <div class="rc-result-grid">
-            <div class="scale-card"><div class="rc-cell-lbl">Type</div><div class="rc-cell-val" id="rcType">—</div></div>
-            <div class="scale-card"><div class="rc-cell-lbl">Rasa</div><div class="rc-cell-val" id="rcRasa">—</div></div>
-            <div class="scale-card"><div class="rc-cell-lbl">Genre</div><div class="rc-cell-val" id="rcGenre">—</div></div>
-            <div class="scale-card"><div class="rc-cell-lbl">Vādi</div><div class="rc-cell-val" id="rcVaadi">—</div></div>
-            <div class="scale-card"><div class="rc-cell-lbl">Arohanam</div><div class="rc-cell-val mono" id="rcAroh">—</div></div>
-            <div class="scale-card"><div class="rc-cell-lbl">Avarohanam</div><div class="rc-cell-val mono" id="rcAvaroh">—</div></div>
-          </div>
-          <div class="rr-ai-box on" id="rcAnalysis"></div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="sidebar-card"><div class="sc-title">Saved Rāgas</div><div id="savedRagasList"><div class="fav-empty">No saved ragas yet</div></div></div>
-    </div>
-  </div>
-</div>
-
-</main>
-
-<script>
-const SWARAS=[
-  {id:'S',name:'Sa',type:'achala',western:'C',solfege:'Do',hz:261.63,langs:{hindi:'सा',telugu:'సా',tamil:'ச',kannada:'ಸ',malayalam:'സ',bengali:'সা',sanskrit:'षड्ज'}},
-  {id:'R1',name:'Ri¹',type:'komal',western:'C#/Db',solfege:'Di',hz:277.18,langs:{hindi:'रे॒',telugu:'రి॒',tamil:'ரி॒',kannada:'ರಿ॒',malayalam:'രി॒',bengali:'রে॒',sanskrit:'ऋषभ'}},
-  {id:'R2',name:'Ri²',type:'komal',western:'D',solfege:'Re',hz:293.66,langs:{hindi:'रे',telugu:'రి',tamil:'ரி',kannada:'ರಿ',malayalam:'രി',bengali:'রে',sanskrit:'ऋषभ'}},
-  {id:'G1',name:'Ga¹',type:'komal',western:'D#/Eb',solfege:'Me',hz:311.13,langs:{hindi:'ग॒',telugu:'గ॒',tamil:'க॒',kannada:'ಗ॒',malayalam:'ഗ॒',bengali:'গ॒',sanskrit:'गान्धार'}},
-  {id:'G2',name:'Ga²',type:'komal',western:'E',solfege:'Mi',hz:329.63,langs:{hindi:'ग',telugu:'గ',tamil:'க',kannada:'ಗ',malayalam:'ഗ',bengali:'গ',sanskrit:'गान्धार'}},
-  {id:'G3',name:'Ga³',type:'komal',western:'E',solfege:'Mi',hz:329.63,langs:{hindi:'ग॑',telugu:'గ॑',tamil:'க॑',kannada:'ಗ॑',malayalam:'ഗ॑',bengali:'গ॑',sanskrit:'गान्धार'}},
-  {id:'M1',name:'Ma¹',type:'shuddha',western:'F',solfege:'Fa',hz:349.23,langs:{hindi:'म',telugu:'మ',tamil:'ம',kannada:'ಮ',malayalam:'മ',bengali:'ম',sanskrit:'मध्यम'}},
-  {id:'M2',name:'Ma²',type:'tivra',western:'F#/Gb',solfege:'Fi',hz:369.99,langs:{hindi:'म॑',telugu:'మ॑',tamil:'ம॑',kannada:'ಮ॑',malayalam:'മ॑',bengali:'ম॑',sanskrit:'मध्यम'}},
-  {id:'P',name:'Pa',type:'achala',western:'G',solfege:'Sol',hz:392,langs:{hindi:'प',telugu:'ప',tamil:'ப',kannada:'ಪ',malayalam:'പ',bengali:'প',sanskrit:'पञ्चम'}},
-  {id:'D1',name:'Dha¹',type:'komal',western:'G#/Ab',solfege:'Le',hz:415.3,langs:{hindi:'ध॒',telugu:'ధ॒',tamil:'த॒',kannada:'ಧ॒',malayalam:'ധ॒',bengali:'ধ॒',sanskrit:'धैवत'}},
-  {id:'D2',name:'Dha²',type:'komal',western:'A',solfege:'La',hz:440,langs:{hindi:'ध',telugu:'ధ',tamil:'த',kannada:'ಧ',malayalam:'ധ',bengali:'ধ',sanskrit:'धैवत'}},
-  {id:'N1',name:'Ni¹',type:'komal',western:'A#/Bb',solfege:'Te',hz:466.16,langs:{hindi:'नि॒',telugu:'ని॒',tamil:'நி॒',kannada:'ನಿ॒',malayalam:'നി॒',bengali:'নি॒',sanskrit:'निषाद'}},
-  {id:'N2',name:'Ni²',type:'komal',western:'B',solfege:'Ti',hz:493.88,langs:{hindi:'नि',telugu:'ని',tamil:'நி',kannada:'ನಿ',malayalam:'നി',bengali:'নি',sanskrit:'निषाद'}},
-  {id:'N3',name:'Ni³',type:'komal',western:'B',solfege:'Ti',hz:493.88,langs:{hindi:'नि॑',telugu:'ని॑',tamil:'நி॑',kannada:'ನಿ॑',malayalam:'നി॑',bengali:'নি॑',sanskrit:'निषाद'}},
-  {id:'S2',name:"Sa'",type:'achala',western:"C'",solfege:"Do'",hz:523.25,langs:{hindi:'सा॑',telugu:'సా॑',tamil:'சா॑',kannada:'ಸಾ॑',malayalam:'സാ॑',bengali:'সা॑',sanskrit:'षड्ज'}}
-];
-
-const RAGAS={
-  Bhairavi:{name:'Bhairavi',system:'Carnatic',type:'Janya',parent:'Hanumatodi (8)',aroh:['S','R1','G1','M1','P','D1','N1','S2'],avaroh:['S2','N1','D1','P','M1','G1','R1','S'],time:'Morning',rasa:'Karuna',mood:'Devotion, grief, surrender',gamakas:['Meend','Andolan','Gamak'],confidence:98},
-  Kalyani:{name:'Kalyani',system:'Carnatic',type:'Melakarta',parent:'Mechakalyani (65)',aroh:['S','R2','G3','M2','P','D2','N3','S2'],avaroh:['S2','N3','D2','P','M2','G3','R2','S'],time:'Evening',rasa:'Shringara',mood:'Radiant, expansive, meditative',gamakas:['Meend','Murki'],confidence:96},
-  Mohanam:{name:'Mohanam',system:'Carnatic',type:'Janya',parent:'Harikambhoji (28)',aroh:['S','R2','G3','P','D2','S2'],avaroh:['S2','D2','P','G3','R2','S'],time:'Afternoon',rasa:'Hasya',mood:'Bright, sweet, open',gamakas:['Jaru','Kan'],confidence:95},
-  Hamsadhwani:{name:'Hamsadhwani',system:'Carnatic',type:'Janya',parent:'Mechakalyani (65)',aroh:['S','R2','G3','P','N3','S2'],avaroh:['S2','N3','P','G3','R2','S'],time:'Anytime',rasa:'Bhakti',mood:'Auspicious, joyful',gamakas:['Kan','Gamak'],confidence:96},
-  Shankarabharanam:{name:'Shankarabharanam',system:'Carnatic',type:'Melakarta',parent:'Dheerashankarabharanam (29)',aroh:['S','R2','G3','M1','P','D2','N3','S2'],avaroh:['S2','N3','D2','P','M1','G3','R2','S'],time:'All times',rasa:'Shringara',mood:'Balanced, majestic',gamakas:['Gamak','Sphurita'],confidence:97},
-  Kharaharapriya:{name:'Kharaharapriya',system:'Carnatic',type:'Melakarta',parent:'Kharaharapriya (22)',aroh:['S','R2','G2','M1','P','D2','N2','S2'],avaroh:['S2','N2','D2','P','M1','G2','R2','S'],time:'Afternoon',rasa:'Karuna',mood:'Reflective, inward',gamakas:['Kampita','Gamak'],confidence:90},
-  Yaman:{name:'Yaman',system:'Hindustani',type:'Thaat-linked',parent:'Kalyan Thaat',aroh:['S','R2','G3','M2','P','D2','N3','S2'],avaroh:['S2','N3','D2','P','M2','G3','R2','S'],time:'Evening',rasa:'Shanta',mood:'Serene, luminous',gamakas:['Meend'],confidence:94},
-  Bhupali:{name:'Bhupali',system:'Hindustani',type:'Thaat-linked',parent:'Kalyan/Bilawal-linked pentatonic',aroh:['S','R2','G3','P','D2','S2'],avaroh:['S2','D2','P','G3','R2','S'],time:'Evening',rasa:'Shanta',mood:'Calm, clear',gamakas:['Kan'],confidence:92},
-  Malkauns:{name:'Malkauns',system:'Hindustani',type:'Traditional',parent:'Bhairavi-related traditional frame',aroh:['S','G1','M1','D1','N1','S2'],avaroh:['S2','N1','D1','M1','G1','S'],time:'Late night',rasa:'Adbhuta',mood:'Mystic, grave',gamakas:['Andolan','Meend'],confidence:91},
-  Bhairav:{name:'Bhairav',system:'Hindustani',type:'Thaat-linked',parent:'Bhairav Thaat',aroh:['S','R1','G3','M1','P','D1','N3','S2'],avaroh:['S2','N3','D1','P','M1','G3','R1','S'],time:'Dawn',rasa:'Bhakti',mood:'Austere, sacred',gamakas:['Andolan'],confidence:93},
-  Megh:{name:'Megh',system:'Historical',type:'Traditional',parent:'Raga-Ragini tradition',aroh:['S','R2','M1','P','N2','S2'],avaroh:['S2','N2','P','M1','R2','S'],time:'Monsoon',rasa:'Shanta',mood:'Rain, expectancy',gamakas:['Meend'],confidence:84}
-};
-
-const LIBRARY_DATA=[
-  {name:'Melakarta Framework',system:'Carnatic',type:'Melakarta',desc:'72 parent ragas forming the structured Carnatic foundation.'},
-  {name:'Janya Possibilities',system:'Carnatic',type:'Janya',desc:'Derived ragas with theoretically vast combinations by omission, phrase-shape, and directional treatment.'},
-  {name:'10 Thaats',system:'Hindustani',type:'Thaat-linked',desc:'Modern Hindustani parent-scale framework codified by Bhatkhande.'},
-  {name:'Raga-Ragini',system:'Historical',type:'Traditional',desc:'Earlier classification systems such as 6 + 30, 84, or 132 lineage models.'},
-  {name:'Guru Granth Sahib Raag System',system:'Historical',type:'Traditional',desc:'31 main and 31 subsidiary raag structures in Sikh musical scripture tradition.'}
-];
-
-const MUDRAS_DATA=[
-  {name:'Pataka',sanskrit:'पताक',category:'asamyuta',form:'bharatanatyam',desc:'Flat hand, all fingers extended together.',usage:'Cloud, river, denial, blessing, stillness',benefit:'Foundational single-hand gesture',neuro:'Supports symbolic clarity and hand stability'},
-  {name:'Tripataka',sanskrit:'त्रिपताक',category:'asamyuta',form:'bharatanatyam',desc:'Pataka with ring finger bent.',usage:'Crown, flame, tree, thunderbolt',benefit:'Expressive narrative variation',neuro:'Useful in dramatic directional cueing'},
-  {name:'Ardhapataka',sanskrit:'अर्धपताक',category:'asamyuta',form:'kuchipudi',desc:'Little finger and ring finger bent.',usage:'Leaf, knife edge, flag fragment',benefit:'Narrative nuance',neuro:'Fine motor refinement'},
-  {name:'Anjali',sanskrit:'अञ्जलि',category:'samyuta',form:'bharatanatyam',desc:'Both palms joined respectfully.',usage:'Prayer, salutation, offering',benefit:'Devotional centering',neuro:'Symmetry and bilateral coordination'},
-  {name:'Kapotam',sanskrit:'कपोत',category:'samyuta',form:'mohiniyattam',desc:'Joined palms with slight hollow between them.',usage:'Humble speech, reverence',benefit:'Soft devotional expression',neuro:'Gentle containment posture'},
-  {name:'Mayura',sanskrit:'मयूर',category:'asamyuta',form:'kathak',desc:'Ring finger and thumb joined.',usage:'Peacock, beauty, ornamentation',benefit:'Elegant stylisation',neuro:'Precision finger articulation'},
-  {name:'Shikhara',sanskrit:'शिखर',category:'asamyuta',form:'kathakali',desc:'Fist with thumb upright.',usage:'Bow, pillar, resolve, bell',benefit:'Firm iconic form',neuro:'Strength cue and focus anchor'},
-  {name:'Alapadma',sanskrit:'अलपद्म',category:'asamyuta',form:'odissi',desc:'Fingers spread like a lotus.',usage:'Lotus, beauty, fullness, radiance',benefit:'Visual expansion',neuro:'Enhances expressive openness'},
-  {name:'Hamsasya',sanskrit:'हंसस्य',category:'asamyuta',form:'mohiniyattam',desc:'Thumb and index joined lightly.',usage:'Delicacy, tying, pearl, grace',benefit:'Subtle expressive emphasis',neuro:'Fine gesture precision'},
-  {name:'Kartarimukha',sanskrit:'कर्तरीमुख',category:'asamyuta',form:'bharatanatyam',desc:'Scissor-like finger arrangement.',usage:'Separation, lightning, branches',benefit:'Strong dramatic contrast',neuro:'Sharp symbolic signal'}
-];
-
-const GENRES=[
-  {name:'Classical',desc:'Strictly structured concert, pedagogic, and grammar-driven usage of ragas and talas.'},
-  {name:'Semi-Classical',desc:'Looser adaptation retaining core grammar while allowing accessibility and lyrical emphasis.'},
-  {name:'Folk',desc:'Regional melodic adaptation influenced by oral traditions and local performance forms.'},
-  {name:'Light',desc:'Simplified melodic presentation for broad listening and stage usage.'},
-  {name:'Soft',desc:'Gentle mood-based adaptation emphasizing emotional warmth and ease.'},
-  {name:'Filmy',desc:'Cinema-inspired adaptation drawing selectively from raga colours.'},
-  {name:'Devotional',desc:'Bhakti-oriented usage for prayer, chanting, and sacred recitation.'},
-  {name:'Meditative',desc:'Slow, contemplative deployment intended for focus, healing, or inwardness.'}
-];
-
-const SACRED_DATA=[
-  {name:'Om',type:'Beejakshara',text:'ॐ',note:'Primordial seed syllable; used as universal sonic reference.',ref:'Used as foundational invocation across traditions.'},
-  {name:'Aim',type:'Beejakshara',text:'ऐं',note:'Associated with Saraswati and knowledge vibration.',ref:'Important in learning, speech, and vidyā-oriented invocations.'},
-  {name:'Hreem',type:'Beejakshara',text:'ह्रीं',note:'Shakta seed associated with inner radiance and Devi principle.',ref:'Frequently referenced in Devi upasana traditions.'},
-  {name:'Shreem',type:'Beejakshara',text:'श्रीं',note:'Lakshmi-related prosperity bija.',ref:'Used in auspicious, abundance, and beauty invocations.'},
-  {name:'Namakam',type:'Vedic',text:'नमस्ते रुद्रमन्यव...',note:'Section of Sri Rudram offering salutations to Rudra.',ref:'Curated reference layer only; can later be expanded textually.'},
-  {name:'Chamakam',type:'Vedic',text:'अग्नाविष्णू सजोṣसा...',note:'Vedic litany of divine requests and abundance formulae.',ref:'Can be linked later to chanting modules.'},
-  {name:'Lalita Sahasranama',type:'Reference',text:'श्री माताः श्री महाराज्ञी...',note:'Thousand names of the Divine Mother.',ref:'Useful as sacred reference and thematic linkage.'},
-  {name:'Devi Khadgamala',type:'Reference',text:'ह्रीं श्रीं...',note:'Shakta liturgical garland of Devi names and chakric progression.',ref:'Requires careful curated annotation.'},
-  {name:'Gayatri Mantra',type:'Mantra',text:'ॐ भूर् भुवः स्वः...',note:'Core Vedic mantra of illumination.',ref:'May be linked to meditative and morning raga contexts.'},
-  {name:'Shanti Mantra',type:'Shloka',text:'ॐ सह नाववतु...',note:'Invocation for peace and learning.',ref:'Suitable for educational and contemplative modules.'}
-];
-
-const GAMAKAS=['Gamak','Meend','Kan','Murki','Andolan','Kampita','Jaru','Sphurita'];
-const TALAS=[{name:'Adi Tala',beats:8,desc:'Core 8-beat Carnatic cycle'},{name:'Rupaka Tala',beats:6,desc:'Flowing 6-beat cycle'},{name:'Misra Chapu',beats:7,desc:'Asymmetric 7-beat cycle'},{name:'Khanda Chapu',beats:5,desc:'Compact 5-beat cycle'}];
-const PRAHARS=[
-  {label:'3–6am',ragas:['Bhairav','Bhairavi']},{label:'6–9am',ragas:['Bhairavi','Shankarabharanam']},{label:'9–12',ragas:['Mohanam']},{label:'12–3pm',ragas:['Kharaharapriya']},{label:'3–6pm',ragas:['Mohanam','Hamsadhwani']},{label:'6–9pm',ragas:['Kalyani','Yaman']},{label:'9–12',ragas:['Malkauns']},{label:'12–3am',ragas:['Malkauns','Megh']}
-];
-const CHAKRAS=[
-  {name:'Indu (1–6)',melakartas:[{n:1,name:'Kanakangi'},{n:2,name:'Ratnangi'},{n:3,name:'Ganamurthi'},{n:4,name:'Vanaspathi'},{n:5,name:'Manavathi'},{n:6,name:'Tanarupi'}]},
-  {name:'Netra (7–12)',melakartas:[{n:7,name:'Senavathi'},{n:8,name:'Hanumatodi'},{n:9,name:'Dhenuka'},{n:10,name:'Natakapriya'},{n:11,name:'Kokilapriya'},{n:12,name:'Rupavathi'}]},
-  {name:'Agni (13–18)',melakartas:[{n:13,name:'Gayakapriya'},{n:14,name:'Vakulabharanam'},{n:15,name:'Mayamalavagowla'},{n:16,name:'Chakravakam'},{n:17,name:'Suryakantam'},{n:18,name:'Hatakambari'}]}
-];
-const RAGA_INSIGHTS={
-  Bhairavi:'Bhairavi is a deeply devotional and emotionally rich raga whose komal colouring makes it ideal for surrender, introspection, and compassion.',
-  Kalyani:'Kalyani is expansive and radiant, often used for luminous, elevated, and refined melodic treatment.',
-  Mohanam:'Mohanam is pentatonic, clear, and immediately appealing, making it one of the most accessible raga frameworks.',
-  Yaman:'Yaman carries serenity and evening luminosity, defined by the sharp Ma and graceful ascent.'
-};
-
-let selectedSwaras=new Set();
-let currentLang='roman';
-let showWestern=true,showSolfege=true;
-let currentRagaName=null;
-let audioCtx=null,droneOsc=null,droneGain=null,droneOn=false;
-let arohSelected=new Set(['S']),avarohSelected=new Set(['S']);
-let vaadiSwara=null,samvaadiSwara=null,selectedGamakas=new Set(),savedRagas=[];
-
-function getAudioCtx(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();return audioCtx;}
-function toggleTheme(){document.body.classList.toggle('light-theme');document.getElementById('themeBtn').textContent=document.body.classList.contains('light-theme')?'🌙 Dark':'☀ Light';}
-function toggleNotation(type,btn){btn.classList.toggle('on');if(type==='western')showWestern=!showWestern;if(type==='solfege')showSolfege=!showSolfege;renderSwaraGrid();}
-function updateLangDisplay(){currentLang=document.getElementById('langSelect').value;renderSwaraGrid();renderSwaraEngine();}
-function getSwaraDisplay(sw){if(currentLang==='western')return sw.western;if(currentLang==='solfege')return sw.solfege;return sw.langs[currentLang]||sw.name;}
-
-function renderSwaraGrid(){const g=document.getElementById('swaraGrid');if(!g)return;g.innerHTML=SWARAS.map(sw=>`<div class="sw ${sw.type} ${selectedSwaras.has(sw.id)?'on':''}" onclick="toggleSwara('${sw.id}')"><span class="sn">${sw.name}</span><span class="sn-lang">${currentLang!=='roman'?getSwaraDisplay(sw):''}</span>${showWestern?`<span class="sw-western">${sw.western}</span>`:''}${showSolfege?`<span class="sv">${sw.solfege}</span>`:''}</div>`).join('');updateScaleCards();}
-function toggleSwara(id){selectedSwaras.has(id)?selectedSwaras.delete(id):selectedSwaras.add(id);renderSwaraGrid();}
-function updateScaleCards(){const ordered=SWARAS.filter(s=>selectedSwaras.has(s.id));document.getElementById('arohVal').textContent=ordered.length?ordered.map(s=>getSwaraDisplay(s)).join(' – '):'—';document.getElementById('arohAlt').textContent=ordered.map(s=>s.western).join(' ');document.getElementById('avarohVal').textContent=ordered.length?[...ordered].reverse().map(s=>getSwaraDisplay(s)).join(' – '):'—';document.getElementById('avarohAlt').textContent=[...ordered].reverse().map(s=>s.western).join(' ');}
-function clearSwaras(){selectedSwaras.clear();renderSwaraGrid();document.getElementById('ragaResult').classList.remove('on');}
-function identifyRaga(){if(selectedSwaras.size<4)return;const sel=[...selectedSwaras];let best=null,bestScore=0;Object.values(RAGAS).forEach(r=>{const aroh=r.aroh.filter(s=>s!=='S2');const score=aroh.filter(s=>sel.includes(s)).length/Math.max(aroh.length,sel.length);if(score>bestScore){best=r;bestScore=score;}});if(best)showRagaResult(best,Math.round(bestScore*100));}
-function showRagaResult(r,conf){currentRagaName=r.name;document.getElementById('ragaResult').classList.add('on');document.getElementById('rrName').textContent=r.name;document.getElementById('rrSystem').textContent=r.system;document.getElementById('rrMela').textContent=r.parent;document.getElementById('rrTime').textContent=r.time;document.getElementById('rrMood').textContent=r.mood;document.getElementById('rrAroh').textContent=r.aroh.map(id=>getSwaraDisplay(SWARAS.find(s=>s.id===id)||{name:id})).join(' – ');document.getElementById('rrAvaroh').textContent=r.avaroh.map(id=>getSwaraDisplay(SWARAS.find(s=>s.id===id)||{name:id})).join(' – ');document.getElementById('rrArohAlt').textContent=r.aroh.map(id=>(SWARAS.find(s=>s.id===id)||{}).western||id).join(' ');document.getElementById('rrAvarohAlt').textContent=r.avaroh.map(id=>(SWARAS.find(s=>s.id===id)||{}).western||id).join(' ');document.getElementById('rrRasaBadge').textContent=r.rasa;document.getElementById('confFill').style.width=conf+'%';document.getElementById('confPct').textContent=conf+'%';document.getElementById('rrGamakas').innerHTML=(r.gamakas||[]).map(g=>`<span class="gk-pill">${g}</span>`).join('');document.getElementById('aiBox').classList.remove('on');document.getElementById('aiBox').textContent='';updateFavButton();}
-function loadRaga(name){const r=RAGAS[name];if(!r)return;selectedSwaras=new Set(r.aroh.filter(x=>x!=='S2'));renderSwaraGrid();showRagaResult(r,r.confidence||90);setTab('finder');}
-function randomRaga(){const names=Object.keys(RAGAS);loadRaga(names[Math.floor(Math.random()*names.length)]);}
-function loadAIInsight(){const b=document.getElementById('aiBox');b.textContent=RAGA_INSIGHTS[currentRagaName]||'This raga can be interpreted through scale design, mood, and system lineage.';b.classList.add('on');}
-function shareRaga(){if(!currentRagaName)return;const url=location.href.split('#')[0]+'#'+encodeURIComponent(currentRagaName);navigator.clipboard.writeText(url).catch(()=>{});const t=document.getElementById('shareToast');t.textContent='Rāga link copied';t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800);history.replaceState(null,'','#'+encodeURIComponent(currentRagaName));}
-function addToCompare(){if(!currentRagaName)return;const a=document.getElementById('compareSelA'),b=document.getElementById('compareSelB');if(!a.value)a.value=currentRagaName;else b.value=currentRagaName;renderCompare();setTab('compare');}
-
-function getFavourites(){try{return JSON.parse(localStorage.getItem('nmV8Favs')||'[]');}catch{return [];}}
-function saveFavourites(a){localStorage.setItem('nmV8Favs',JSON.stringify(a));}
-function toggleFavourite(){if(!currentRagaName)return;let f=getFavourites();f.includes(currentRagaName)?f=f.filter(x=>x!==currentRagaName):f.push(currentRagaName);saveFavourites(f);renderFavList();updateFavButton();}
-function updateFavButton(){const f=getFavourites();const btn=document.getElementById('favBtn');if(!btn)return;btn.textContent=f.includes(currentRagaName)?'♥ Favourited':'♡ Favourite';}
-function renderFavList(){const f=getFavourites();const el=document.getElementById('favList');el.innerHTML=f.length?f.map(n=>`<div class="fav-item" onclick="loadRaga('${n}')"><span class="q-name">${n}</span><span class="q-rasa" onclick="event.stopPropagation();removeFav('${n}')">✕</span></div>`).join(''):'<div class="fav-empty">No favourites yet</div>';}
-function removeFav(n){saveFavourites(getFavourites().filter(x=>x!==n));renderFavList();updateFavButton();}
-
-function toggleDrone(){const btn=document.getElementById('droneBtn');if(droneOn){if(droneGain)droneGain.gain.exponentialRampToValueAtTime(0.001,getAudioCtx().currentTime+.4);setTimeout(()=>{if(droneOsc){droneOsc.stop();droneOsc=null;}},500);droneOn=false;btn.textContent='▶ Start Drone';}else{const ctx=getAudioCtx();droneOsc=ctx.createOscillator();droneGain=ctx.createGain();droneOsc.connect(droneGain);droneGain.connect(ctx.destination);droneOsc.frequency.value=261.63;droneOsc.type='sine';droneGain.gain.setValueAtTime(0,ctx.currentTime);droneGain.gain.linearRampToValueAtTime(.1,ctx.currentTime+.4);droneOsc.start();droneOn=true;btn.textContent='■ Stop Drone';}}
-
-function renderQuickRagas(){document.getElementById('quickRagaList').innerHTML=Object.values(RAGAS).slice(0,8).map(r=>`<div class="q-item" onclick="loadRaga('${r.name}')"><span class="q-name">${r.name}</span><span class="q-conf">${r.confidence||90}%</span></div>`).join('');}
-function renderSwaraEngine(){const g=document.getElementById('swaraEngineGrid');if(!g)return;g.innerHTML=SWARAS.slice(0,-1).map(sw=>`<div class="sec-card"><div class="sec-header"><div class="sec-top"><span class="sec-carnatic">${sw.name}</span><span class="sec-western">${sw.western}</span><span class="sec-solfege">${sw.solfege}</span></div><div class="sec-langs">${Object.entries(sw.langs).map(([k,v])=>`<span class="sec-lang-item">${k}: ${v}</span>`).join('')}</div></div><div class="sec-body"><div class="sec-row"><span class="sec-row-lbl">Frequency</span><span class="sec-row-val">${sw.hz} Hz</span></div><div class="sec-row"><span class="sec-row-lbl">Current Script</span><span class="sec-row-val">${getSwaraDisplay(sw)}</span></div></div></div>`).join('');}
-function renderConstellation(){const canvas=document.getElementById('constellationCanvas');if(!canvas)return;const wrap=canvas.parentElement;canvas.width=wrap.clientWidth;canvas.height=420;const ctx=canvas.getContext('2d');ctx.clearRect(0,0,canvas.width,canvas.height);const list=Object.values(RAGAS),cx=canvas.width/2,cy=210;const nodes=list.map((r,i)=>({r,x:cx+Math.cos(i/list.lengthMath.PI2)150,y:cy+Math.sin(i/list.lengthMath.PI2)130}));nodes.forEach((a,i)=>nodes.slice(i+1).forEach(b=>{const shared=a.r.aroh.filter(x=>b.r.aroh.includes(x)).length;if(shared>=4){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle='rgba(200,168,75,.08)';ctx.stroke();}}));nodes.forEach(n=>{ctx.beginPath();ctx.arc(n.x,n.y,8,0,Math.PI*2);ctx.fillStyle='#c8a84b';ctx.fill();ctx.fillStyle='#ede8dc';ctx.font='12px serif';ctx.textAlign='center';ctx.fillText(n.r.name,n.x,n.y+22);});canvas.onclick=e=>{const rect=canvas.getBoundingClientRect();const x=e.clientX-rect.left,y=e.clientY-rect.top;const hit=nodes.find(n=>Math.hypot(n.x-x,n.y-y)<12);if(hit)loadRaga(hit.r.name);};}
-
-function renderLibrary(list=LIBRARY_DATA){document.getElementById('libraryGrid').innerHTML=list.map(i=>`<div class="genre-card"><div class="genre-lbl">${i.system}</div><div class="genre-name">${i.name}</div><div class="genre-badge" style="border-color:var(--gold);color:var(--gold);width:max-content;">${i.type}</div><div class="genre-desc" style="margin-top:10px;">${i.desc}</div></div>`).join('');}
-function filterLibrary(){const q=document.getElementById('librarySearch').value.toLowerCase(),s=document.getElementById('librarySystemFilter').value,t=document.getElementById('libraryTypeFilter').value;renderLibrary(LIBRARY_DATA.filter(i=>(!q||(`${i.name} ${i.system} ${i.type} ${i.desc}`).toLowerCase().includes(q))&&(!s||i.system===s)&&(!t||i.type===t)));}
-
-function renderMudraGrid(filter='all'){const list=MUDRAS_DATA.filter(m=>filter==='all'||m.category===filter||m.form===filter);document.getElementById('mudraGrid').innerHTML=list.map(m=>`<div class="mudra-card"><div class="mc-form">${m.category} · ${m.form}</div><div class="mc-name">${m.name}</div><div class="mc-sanskrit">${m.sanskrit}</div><div class="mc-desc">${m.desc}</div><div class="mc-usage"><strong>Usage:</strong> ${m.usage}</div><div class="mc-benefit">${m.benefit}</div><div class="mc-neuro">${m.neuro}</div></div>`).join('');}
-function filterMudra(f,btn){document.querySelectorAll('.dtab').forEach(x=>x.classList.remove('on'));if(btn)btn.classList.add('on');renderMudraGrid(f);}
-
-function renderXrefPills(){document.getElementById('xrefSwaraPills').innerHTML=SWARAS.slice(0,-1).map(sw=>`<div class="xref-item" onclick="xrefSelect('${sw.id}')"><span class="xref-item-name">${sw.name}</span><span class="xref-item-sub">${sw.western}</span></div>`).join('');}
-function xrefSelect(id){const sw=SWARAS.find(s=>s.id===id),ragas=Object.values(RAGAS).filter(r=>r.aroh.includes(id)||r.avaroh.includes(id)),sac=SACRED_DATA.slice(0,3);document.getElementById('xrefResults').innerHTML=`<div class="xref-result-section"><div class="sc-title">Ragas using ${sw.name}</div><div class="xref-item-list">${ragas.map(r=>`<div class="xref-item" onclick="loadRaga('${r.name}')"><span class="xref-item-name">${r.name}</span><span class="xref-item-sub">${r.system} · ${r.rasa}</span></div>`).join('')||'<div class="xref-empty">No ragas found</div>'}</div></div><div class="xref-result-section" style="margin-top:12px;"><div class="sc-title">Linked Sacred References</div><div class="xref-item-list">${sac.map(s=>`<div class="xref-item"><span class="xref-item-name">${s.name}</span><span class="xref-item-sub">${s.type}</span></div>`).join('')}</div></div>`;}
-
-function renderGenres(){document.getElementById('genreGrid').innerHTML=GENRES.map(g=>`<div class="genre-card"><div class="genre-lbl">Usage Layer</div><div class="genre-name">${g.name}</div><div class="genre-desc">${g.desc}</div></div>`).join('');}
-function renderSacred(list=SACRED_DATA){document.getElementById('sacredGrid').innerHTML=list.map(s=>`<div class="sacred-card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;"><div class="sacred-name">${s.name}</div><div class="sacred-badge" style="border-color:var(--lav);color:var(--lav);">${s.type}</div></div><div class="sacred-text">${s.text}</div><div class="sacred-note">${s.note}</div><div class="sacred-ref">${s.ref}</div></div>`).join('');}
-function filterSacred(){const q=document.getElementById('sacredSearch').value.toLowerCase(),t=document.getElementById('sacredTypeFilter').value;renderSacred(SACRED_DATA.filter(s=>(!q||(`${s.name} ${s.type} ${s.text} ${s.note} ${s.ref}`).toLowerCase().includes(q))&&(!t||s.type===t)));}
-
-function renderTala(){document.getElementById('talaGrid').innerHTML=TALAS.map(t=>`<div class="tala-card"><div class="genre-name" style="font-size:26px;">${t.name}</div><div class="genre-desc">${t.desc}</div><div class="sacred-badge" style="margin-top:10px;border-color:var(--gold);color:var(--gold);width:max-content;">${t.beats} beats</div></div>`).join('');}
-function renderTimeWheel(){const canvas=document.getElementById('timeWheelCanvas');if(!canvas)return;const ctx=canvas.getContext('2d'),W=480,H=480,cx=W/2,cy=H/2,R=170;ctx.clearRect(0,0,W,H);PRAHARS.forEach((p,i)=>{const a1=i/8Math.PI2-Math.PI/2,a2=(i+1)/8Math.PI2-Math.PI/2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,R,a1,a2);ctx.closePath();ctx.fillStyle=`hsla(${i40},60%,50%,0.18)`;ctx.fill();ctx.strokeStyle='rgba(200,168,75,.25)';ctx.stroke();const m=(a1+a2)/2;ctx.fillStyle='#ede8dc';ctx.font='12px serif';ctx.textAlign='center';ctx.fillText(p.label,cx+Math.cos(m)120,cy+Math.sin(m)120);});canvas.onclick=e=>{const rect=canvas.getBoundingClientRect(),x=e.clientX-rect.left-cx,y=e.clientY-rect.top-cy;let ang=Math.atan2(y,x)+Math.PI/2;if(ang<0)ang+=Math.PI2;const idx=Math.floor(ang/(Math.PI2)8);const p=PRAHARS[idx];document.getElementById('wheelInfoPanel').innerHTML=`<div class="genre-name" style="font-size:28px;">${p.label}</div><div class="wheel-raga-list" style="margin-top:10px;">${p.ragas.map(r=>`<div class="wheel-raga-item" onclick="loadRaga('${r}')"><span class="wheel-raga-title">${r}</span></div>`).join('')}</div>`;};}
-function renderMelakarta(){document.getElementById('melaLayout').innerHTML=CHAKRAS.map(c=>`<div class="mela-chakra" style="margin-bottom:14px;"><div class="sc-title" style="padding:14px 16px 0;">${c.name}</div><div style="display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:14px 16px 16px;">${c.melakartas.map(m=>`<div class="mela-cell"><div class="mini-note">#${m.n}</div><div class="mela-n">${m.name}</div></div>`).join('')}</div></div>`).join('');}
-
-function initCompareSelects(){['compareSelA','compareSelB'].forEach(id=>{const s=document.getElementById(id);if(s.dataset.done)return;Object.keys(RAGAS).forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;s.appendChild(o);});s.dataset.done='1';});}
-function renderCompare(){const a=RAGAS[document.getElementById('compareSelA').value],b=RAGAS[document.getElementById('compareSelB').value];renderComparePanel('compareBodyA',a,b);renderComparePanel('compareBodyB',b,a);}
-function renderComparePanel(id,r,o){const el=document.getElementById(id);if(!r){el.innerHTML='<div class="fav-empty">Select a raga above</div>';return;}const rows=[['System',r.system],['Type',r.type],['Parent',r.parent],['Rasa',r.rasa],['Time',r.time],['Arohanam',r.aroh.join(' – ')],['Avarohanam',r.avaroh.join(' – ')],['Mood',r.mood]];el.innerHTML=rows.map(([k,v])=>`<div class="compare-row"><div class="compare-row-label">${k}</div><div class="compare-val ${o&&o[k?.toLowerCase()]!==v?'diff':''}">${v}</div></div>`).join('');}
-
-function renderCreatorGrids(){['arohGrid','avarohGrid'].forEach((gid,i)=>{const sel=i===0?arohSelected:avarohSelected;document.getElementById(gid).innerHTML=SWARAS.slice(0,-1).map(sw=>`<div class="sw-mini ${sel.has(sw.id)?i===0?'on-a':'on-v':''}" onclick="toggleCreatorSwara('${sw.id}',${i})"><span class="sn2">${sw.name}</span><span class="sw2">${sw.western}</span></div>`).join('');});document.getElementById('vaadiRow').innerHTML=SWARAS.slice(0,-1).map(sw=>`<button class="vaadi-btn ${vaadiSwara===sw.id?'on-a':''}" onclick="setVaadi('${sw.id}')">${sw.name}</button>`).join('');document.getElementById('samvaadiRow').innerHTML=SWARAS.slice(0,-1).map(sw=>`<button class="vaadi-btn ${samvaadiSwara===sw.id?'on-v':''}" onclick="setSamvaadi('${sw.id}')">${sw.name}</button>`).join('');document.getElementById('gamakaSelectGrid').innerHTML=GAMAKAS.map(g=>`<button class="gk-toggle ${selectedGamakas.has(g)?'on':''}" onclick="toggleGamaka('${g}')">${g}</button>`).join('');}
-function toggleCreatorSwara(id,i){if(id==='S')return;const set=i===0?arohSelected:avarohSelected;set.has(id)?set.delete(id):set.add(id);renderCreatorGrids();}
-function setVaadi(id){vaadiSwara=id;renderCreatorGrids();}
-function setSamvaadi(id){samvaadiSwara=id;renderCreatorGrids();}
-function toggleGamaka(id){selectedGamakas.has(id)?selectedGamakas.delete(id):selectedGamakas.add(id);renderCreatorGrids();}
-function generateRagaName(){const a=['Nava','Deva','Hema','Tara','Amrita','Rasa'],b=['priya','ranjani','lahari','mohini','vardhani','malini'];return a[Math.floor(Math.random()a.length)]+b[Math.floor(Math.random()b.length)];}
-function generateRaga(){const aroh=SWARAS.filter(s=>arohSelected.has(s.id)),avaroh=SWARAS.filter(s=>avarohSelected.has(s.id));if(aroh.length<4)return;const name=document.getElementById('creatorName').value.trim()||generateRagaName();document.getElementById('rcResultBox').style.display='block';document.getElementById('rcName').textContent=name;document.getElementById('rcType').textContent=aroh.length===5?'Audava':aroh.length===6?'Shadava':'Sampurna';document.getElementById('rcRasa').textContent=document.getElementById('creatorRasa').value||'—';document.getElementById('rcGenre').textContent=document.getElementById('creatorGenre').value||'—';document.getElementById('rcVaadi').textContent=vaadiSwara||'—';document.getElementById('rcAroh').textContent=aroh.map(s=>getSwaraDisplay(s)).join(' – ');document.getElementById('rcAvaroh').textContent=avaroh.map(s=>getSwaraDisplay(s)).join(' – ');document.getElementById('rcAnalysis').textContent=`${name} is a generated raga concept built from the selected swaras.\n\nIt is intended for ${document.getElementById('creatorRasa').value||'general'} expression and ${document.getElementById('creatorGenre').value||'open'} usage.\n\nThis draft creator preserves your current format while supporting multilingual display, save, and export.`;}
-function clearCreator(){arohSelected=new Set(['S']);avarohSelected=new Set(['S']);vaadiSwara=null;samvaadiSwara=null;selectedGamakas.clear();document.getElementById('creatorName').value='';document.getElementById('creatorRasa').value='';document.getElementById('creatorGenre').value='';document.getElementById('rcResultBox').style.display='none';renderCreatorGrids();}
-function saveRaga(){const name=document.getElementById('rcName').textContent;if(!name||name==='—')return;savedRagas.push({name,aroh:[...arohSelected],avaroh:[...avarohSelected],rasa:document.getElementById('creatorRasa').value,genre:document.getElementById('creatorGenre').value});renderSavedList();}
-function renderSavedList(){document.getElementById('savedRagasList').innerHTML=savedRagas.length?savedRagas.map((r,i)=>`<div class="saved-raga-card"><div><div class="saved-raga-name">${r.name}</div><div class="mini-note">${r.rasa||'No rasa'} · ${r.genre||'No genre'}</div></div><div class="saved-raga-actions"><button class="btn" onclick="loadSaved(${i})">Load</button><button class="btn" onclick="deleteSaved(${i})">✕</button></div></div>`).join(''):'<div class="fav-empty">No saved ragas yet</div>';}
-function loadSaved(i){const r=savedRagas[i];arohSelected=new Set(r.aroh);avarohSelected=new Set(r.avaroh);document.getElementById('creatorRasa').value=r.rasa||'';document.getElementById('creatorGenre').value=r.genre||'';document.getElementById('creatorName').value=r.name;renderCreatorGrids();}
-function deleteSaved(i){savedRagas.splice(i,1);renderSavedList();}
-function exportRaga(){const name=document.getElementById('rcName').textContent;if(!name||name==='—')return;const obj={name,aroh:[...arohSelected],avaroh:[...avarohSelected],rasa:document.getElementById('creatorRasa').value,genre:document.getElementById('creatorGenre').value,language:currentLang,generated:new Date().toISOString()};const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`${name.replace(/\s+/g,'_')}_raga.json`;a.click();URL.revokeObjectURL(url);}
-
-function setTab(name){const names=['finder','swara','constellation','library','mudra','xref','genres','sacred','tala','timewheel','melakarta','compare','creator'];document.querySelectorAll('.tab').forEach((b,i)=>b.classList.toggle('on',names[i]===name));document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));const pane=document.getElementById('pane-'+name);if(pane)pane.classList.add('on');if(name==='constellation')setTimeout(renderConstellation,50);if(name==='tala')renderTala();if(name==='timewheel')setTimeout(renderTimeWheel,50);if(name==='melakarta')renderMelakarta();if(name==='compare'){initCompareSelects();renderCompare();}}
-
-window.addEventListener('DOMContentLoaded',()=>{renderSwaraGrid();renderQuickRagas();renderFavList();renderSwaraEngine();renderLibrary();renderMudraGrid();renderXrefPills();renderGenres();renderSacred();renderTala();renderCreatorGrids();renderSavedList();initCompareSelects();if(location.hash){const n=decodeURIComponent(location.hash.slice(1));if(RAGAS[n])loadRaga(n);}});
-</script>
-</body>
+      <div class="tabs" id="tabs"> <button class="tab active" data-tab="finder">Rāga Finder</button> <button class="tab" data-tab="creator">Rāga Creator</button> <button class="tab" data-tab="mudra">Mudrā Encyclopedia</button> <button class="tab" data-tab="sacred">Sacred References</button> <button class="tab" data-tab="genres">Genres</button> <button class="tab" data-tab="audio">Audio Test</button> </div>
+      <main>
+         <section class="pane active" id="pane-finder">
+            <div class="title">Rāga Finder</div>
+            <div class="subtitle">Choose swaras, identify a raga, and display meaning, references, and interpretation.</div>
+            <div class="grid-2">
+               <div>
+                  <div class="card">
+                     <div class="section-label">Select Swaras</div>
+                     <div class="swara-grid" id="swaraGrid"></div>
+                     <div class="action-row"> <button class="btn primary" id="identifyBtn">Identify Rāga</button> <button class="btn" id="clearBtn">Clear</button> <button class="btn sage" id="randomBtn">Random</button> </div>
+                  </div>
+                  <div class="card" style="margin-top:16px">
+                     <div class="section-label">Result</div>
+                     <div id="resultArea">
+                        <div class="muted">Select swaras and click <strong>Identify Rāga</strong>.</div>
+                     </div>
+                  </div>
+               </div>
+               <aside class="sidebar-only">
+                  <div class="card">
+                     <div class="section-label">Quick Ragas</div>
+                     <div class="sidebar-list" id="quickRagas"></div>
+                  </div>
+                  <div class="card" style="margin-top:16px">
+                     <div class="section-label">Output Actions</div>
+                     <div class="muted">Print, save, and share work on the current visible result screen.</div>
+                     <div class="watermark-note">Background musical tone and center watermark are included.</div>
+                  </div>
+               </aside>
+            </div>
+         </section>
+         <section class="pane" id="pane-creator">
+            <div class="title">Rāga Creator</div>
+            <div class="subtitle">Keep the creator tab intact and generate a custom raga with interpretation.</div>
+            <div class="grid-2">
+               <div>
+                  <div class="card">
+                     <div class="section-label">Create Rāga</div>
+                     <div class="search-row">
+                        <input type="text" id="creatorName" placeholder="Rāga name (optional)"> 
+                        <select id="creatorRasa">
+                           <option value="Bhakti">Bhakti</option>
+                           <option value="Karuna">Karuna</option>
+                           <option value="Shringara">Shringara</option>
+                           <option value="Shanta">Shanta</option>
+                           <option value="Veera">Veera</option>
+                           <option value="Adbhuta">Adbhuta</option>
+                        </select>
+                     </div>
+                     <div class="swara-grid" id="creatorSwaraGrid"></div>
+                     <div class="action-row"> <button class="btn primary" id="generateBtn">Generate</button> <button class="btn" id="clearCreatorBtn">Clear</button> </div>
+                  </div>
+                  <div class="card" style="margin-top:16px">
+                     <div class="section-label">Created Result</div>
+                     <div id="creatorResult" class="muted">Generate a raga to see full interpretation.</div>
+                  </div>
+               </div>
+               <div class="card sidebar-only">
+                  <div class="section-label">What Will Display</div>
+                  <div class="long-output">When a raga is created, the app can show: - Structure and swara set - Meaning and intended rasa - Philosophical note - Mudra linkage - Beejakshara linkage - Sacred references - Neurological / scientific note - Astrological / traditional note - Genre context - Print / Save / Share readiness</div>
+               </div>
+            </div>
+         </section>
+         <section class="pane" id="pane-mudra">
+            <div class="title">Mudrā Encyclopedia</div>
+            <div class="subtitle">Meaning, philosophy, purpose, usage, associated sound, and traditional power.</div>
+            <div class="search-row"> <input type="text" id="mudraSearch" placeholder="Search mudra, category, meaning..."> </div>
+            <div class="grid-auto" id="mudraGrid"></div>
+         </section>
+         <section class="pane" id="pane-sacred">
+            <div class="title">Sacred References</div>
+            <div class="subtitle">Mantras, shlokas, Lalita Sahasranamavali, Devi Khadgamala, Rudram, Namakam, Chamakam, and metaphorical references.</div>
+            <div class="search-row"> <input type="text" id="sacredSearch" placeholder="Type a reference like Rudram, Hreem, Lalita, Gayatri..."> </div>
+            <div class="card">
+               <div class="section-label">Auto Reference Output</div>
+               <div id="sacredResults" class="long-output">Start typing to see relevant sacred references automatically.</div>
+            </div>
+         </section>
+         <section class="pane" id="pane-genres">
+            <div class="title">Genres</div>
+            <div class="subtitle">Classical, semi-classical, folk, light, soft, filmy, devotional, and meditative usage layers.</div>
+            <div class="grid-auto" id="genreGrid"></div>
+         </section>
+         <section class="pane" id="pane-audio">
+            <div class="title">Audio Test Tool</div>
+            <div class="subtitle">Simple flute-style soft tone testing tool for listening and pitch mood support.</div>
+            <div class="card">
+               <div class="section-label">Flute Tone Tool</div>
+               <div class="audio-strip">
+                  <button class="btn primary" id="playFluteBtn">Play Soft Flute Tone</button> <button class="btn" id="stopFluteBtn">Stop</button> 
+                  <select id="fluteNote">
+                     <option value="261.63">Sa / C</option>
+                     <option value="293.66">Ri / D</option>
+                     <option value="329.63">Ga / E</option>
+                     <option value="349.23">Ma / F</option>
+                     <option value="392.00">Pa / G</option>
+                     <option value="440.00">Dha / A</option>
+                     <option value="493.88">Ni / B</option>
+                  </select>
+               </div>
+               <div class="watermark-note">This is a simple oscillator-based tone tool, not a full flute sampler.</div>
+            </div>
+         </section>
+         <div class="footer-actions"> <button class="btn" id="printBtn2">Print Current View</button> <button class="btn" id="saveBtn2">Save Current View</button> <button class="btn rose" id="shareBtn2">Share Current View</button> </div>
+      </main>
+      <script> const SWARAS = [ { id:'S', name:'Sa', western:'C', langs:{ roman:'Sa', sanskrit:'षड्ज', hindi:'सा', telugu:'సా', tamil:'ச', kannada:'ಸ', malayalam:'സ' } }, { id:'R1', name:'Ri1', western:'C#', langs:{ roman:'Ri¹', sanskrit:'ऋ', hindi:'रे॒', telugu:'రి॒', tamil:'ரி॒', kannada:'ರಿ॒', malayalam:'രി॒' } }, { id:'R2', name:'Ri2', western:'D', langs:{ roman:'Ri²', sanskrit:'ऋ', hindi:'रे', telugu:'రి', tamil:'ரி', kannada:'ರಿ', malayalam:'രി' } }, { id:'G2', name:'Ga2', western:'E', langs:{ roman:'Ga²', sanskrit:'ग', hindi:'ग', telugu:'గ', tamil:'க', kannada:'ಗ', malayalam:'ഗ' } }, { id:'G3', name:'Ga3', western:'E', langs:{ roman:'Ga³', sanskrit:'ग', hindi:'ग॑', telugu:'గ॑', tamil:'க॑', kannada:'ಗ॑', malayalam:'ഗ॑' } }, { id:'M1', name:'Ma1', western:'F', langs:{ roman:'Ma¹', sanskrit:'म', hindi:'म', telugu:'మ', tamil:'ம', kannada:'ಮ', malayalam:'മ' } }, { id:'M2', name:'Ma2', western:'F#', langs:{ roman:'Ma²', sanskrit:'म', hindi:'म॑', telugu:'మ॑', tamil:'ம॑', kannada:'ಮ॑', malayalam:'മ॑' } }, { id:'P', name:'Pa', western:'G', langs:{ roman:'Pa', sanskrit:'प', hindi:'प', telugu:'ప', tamil:'ப', kannada:'ಪ', malayalam:'പ' } }, { id:'D1', name:'Dha1', western:'G#', langs:{ roman:'Dha¹', sanskrit:'ध', hindi:'ध॒', telugu:'ధ॒', tamil:'த॒', kannada:'ಧ॒', malayalam:'ധ॒' } }, { id:'D2', name:'Dha2', western:'A', langs:{ roman:'Dha²', sanskrit:'ध', hindi:'ध', telugu:'ధ', tamil:'த', kannada:'ಧ', malayalam:'ധ' } }, { id:'N2', name:'Ni2', western:'B', langs:{ roman:'Ni²', sanskrit:'नि', hindi:'नि', telugu:'ని', tamil:'நி', kannada:'ನಿ', malayalam:'നി' } }, { id:'N3', name:'Ni3', western:'B', langs:{ roman:'Ni³', sanskrit:'नि', hindi:'नि॑', telugu:'ని॑', tamil:'நி॑', kannada:'ನಿ॑', malayalam:'നി॑' } } ]; const RAGAS = { Kalyani: { swaras:['S','R2','G3','M2','P','D2','N3'], meaning:'Auspiciousness, radiance, and upliftment.', philosophy:'Kalyani is often understood as a raga of elevation, refinement, and expansive grace.', mudra:'Anjali / Hamsasya', beejaksharas:'Aim, Shreem', neurological:'Bright interval relations may support alert yet calm listening states.', scientific:'Sharp Ma creates a distinct tonal brightness and tension-release effect.', astrological:'Traditionally linked with benefic, graceful, uplifting energies.', sacred:'Can be paired with meditative, devotional, and auspicious references.', genre:'Classical / Devotional / Soft' }, Mohanam: { swaras:['S','R2','G3','P','D2'], meaning:'Enchantment, openness, sweetness, direct appeal.', philosophy:'A pentatonic clarity that suggests simplicity and beauty without overcrowding.', mudra:'Pataka / Alapadma', beejaksharas:'Om, Hreem', neurological:'Pentatonic patterns can feel cognitively accessible and emotionally immediate.', scientific:'Reduced note density often produces a clean and memorable melodic contour.', astrological:'Traditionally treated as bright, clear, and auspicious in feeling.', sacred:'Useful for uplifting devotional and meditative moods.', genre:'Classical / Light / Filmy' }, Bhairavi: { swaras:['S','R1','G2','M1','P','D1','N2'], meaning:'Compassion, surrender, emotional depth.', philosophy:'A raga of inwardness, catharsis, bhakti, and mature feeling.', mudra:'Anjali / Tripataka', beejaksharas:'Hreem, Shreem', neurological:'May support reflective and emotionally processing listening states.', scientific:'Minor and softer interval colors often feel introspective and weighted.', astrological:'Traditionally connected to grave, devotional, and mature emotional moods.', sacred:'Pairs well with prayerful and serious sacred material.', genre:'Classical / Devotional' }, Hamsadhwani: { swaras:['S','R2','G3','P','N3'], meaning:'Joy, invocation, auspicious beginning.', philosophy:'Often used to open with clarity, blessing, and brightness.', mudra:'Pataka / Hamsasya', beejaksharas:'Om, Aim', neurological:'Can support energetic positive attention.', scientific:'Pentatonic brightness gives a strong opening character.', astrological:'Traditionally viewed as auspicious and opening in nature.', sacred:'Useful for invocatory contexts.', genre:'Classical / Devotional / Soft' } }; const MUDRAS = [ { name:'Pataka', category:'Asamyuta Hasta', meaning:'Flag, statement, declaration, stillness.', philosophy:'Represents assertion, framing, and symbolic clarity in expression.', why:'Used when one needs a clear communicative gesture, iconic visual meaning, or ritual framing.', beejaksharas:'Om', power:'Traditionally associated with stabilizing intent and declarative expression.' }, { name:'Anjali', category:'Samyuta Hasta', meaning:'Offering, reverence, prayer, surrender.', philosophy:'Embodies union, humility, devotion, and inward-centering.', why:'Used for salutation, prayer, and emotional alignment of mind and body.', beejaksharas:'Hreem, Shreem', power:'Traditionally linked with devotion, integration, and sacred receptivity.' }, { name:'Hamsasya', category:'Asamyuta Hasta', meaning:'Grace, delicacy, subtle indication.', philosophy:'Represents refinement, precision, beauty, and subtle expression.', why:'Used when meaning must be shown softly, elegantly, or with precision.', beejaksharas:'Aim', power:'Traditionally associated with refined knowledge, beauty, and subtle communication.' }, { name:'Alapadma', category:'Asamyuta Hasta', meaning:'Lotus, blossoming, fullness.', philosophy:'Represents unfolding consciousness, beauty, and inner flowering.', why:'Used to show radiance, blossoming, ornamentation, and divine beauty.', beejaksharas:'Shreem', power:'Traditionally associated with fullness, abundance, grace, and beauty.' } ]; const SACRED = [ { key:'rudram', title:'Sri Rudram / Namakam', type:'Vedic Reference', text:'A Vedic hymn of salutations to Rudra, invoking the divine presence in all forms.', meaning:'Reveals divinity in fierce, subtle, cosmic, and worldly dimensions.', philosophy:'The sacred is not outside life; it pervades all forms of existence.', note:'When user types Rudram, Namakam, or Rudra, this should appear automatically.' }, { key:'chamakam', title:'Chamakam', type:'Vedic Reference', text:'A companion Vedic chant traditionally recited after Namakam, invoking fullness and sacred completeness.', meaning:'Articulates sacred abundance and the aspiration toward wholeness.', philosophy:'Human life is fulfilled when aligned with cosmic order and sacred purpose.', note:'When user types Chamakam, related output should appear automatically.' }, { key:'lalita', title:'Lalita Sahasranamavali', type:'Sacred Reference', text:'A revered litany of the thousand names of the Divine Mother in her Lalita form.', meaning:'Each name reveals an aspect of divine consciousness, beauty, compassion, power, and subtle metaphysics.', philosophy:'The Divine Mother is both transcendent and immanent, absolute and intimate.', note:'When user types Lalita, Sahasranama, or Sahasranamavali, this should appear automatically.' }, { key:'khadgamala', title:'Devi Khadgamala', type:'Sacred Reference', text:'A Shakta hymn and liturgical garland invoking the Devi through progressive inner and cosmic mapping.', meaning:'Represents a sacred spiritual journey through layers of power, awareness, and protection.', philosophy:'The seeker moves through inner mandalic consciousness toward the Divine Center.', note:'When user types Khadgamala or Devi Khadgamala, this should appear automatically.' }, { key:'gayatri', title:'Gayatri Mantra', type:'Mantra', text:'Om Bhur Bhuvah Svah Tat Savitur Varenyam Bhargo Devasya Dheemahi Dhiyo Yo Nah Prachodayat.', meaning:'A prayer for illumination of the intellect by the divine light.', philosophy:'Knowledge is not merely acquired; it is awakened through sacred illumination.', note:'Appears for Gayatri queries.' }, { key:'hreem', title:'Hreem', type:'Beejakshara', text:'A powerful Shakta seed syllable associated traditionally with Devi consciousness.', meaning:'Often interpreted as a vibration of sacred force, inner radiance, and transformative energy.', philosophy:'A seed sound is treated as concentrated sacred meaning rather than ordinary language.', note:'Appears for Hreem or beejakshara queries.' }, { key:'shreem', title:'Shreem', type:'Beejakshara', text:'Traditionally associated with Lakshmi, abundance, harmony, and grace.', meaning:'A sound-symbol of auspiciousness, beauty, nourishment, and prosperity.', philosophy:'Abundance is viewed not merely materially, but as fullness and harmony.', note:'Appears for Shreem queries.' }, { key:'aim', title:'Aim', type:'Beejakshara', text:'Traditionally associated with Saraswati, knowledge, speech, and refined learning.', meaning:'A seed sound linked with wisdom, articulation, art, and learning.', philosophy:'Sacred sound can be treated as a path to refined intellect and expression.', note:'Appears for Aim queries.' } ]; const GENRES = [ ['Classical','Grammar-driven, tradition-rooted, structurally rigorous musical usage.'], ['Semi-Classical','Retains raga identity while allowing softer presentation and adaptation.'], ['Folk','Rooted in regional expression and orally evolving melodic feeling.'], ['Light','Accessible, gentle presentation with reduced structural density.'], ['Soft','Mood-forward, soothing, graceful, and relaxed adaptation.'], ['Filmy','Cinema-oriented adaptation drawing selectively from raga color.'], ['Devotional','Bhakti-centered rendering for prayer, spiritual expression, and inner focus.'], ['Meditative','Slow, contemplative, inward, and reflection-oriented usage.'] ]; let selectedFinderSwaras = new Set(); let selectedCreatorSwaras = new Set(); let currentLanguage = 'roman'; let currentVisibleContent = 'Nāda Mudrā V8.1'; let audioCtx = null; let fluteOsc = null; let fluteGain = null; const qs = (s,root=document) => root.querySelector(s); const qsa = (s,root=document) => [...root.querySelectorAll(s)]; function displaySwara(sw){ return sw.langs[currentLanguage] || sw.langs.roman || sw.name; } function renderSwaraGrid(targetId, selectedSet){ const grid = qs(targetId); grid.innerHTML = SWARAS.map(sw => ` <div class="swara ${selectedSet.has(sw.id) ? 'active' : ''}" data-swara="${sw.id}"> <span class="main">${displaySwara(sw)}</span> <span class="sub">${sw.western}</span> </div> `).join(''); } function bindSwaraGrid(targetId, selectedSet){ qs(targetId).addEventListener('click', (e) => { const tile = e.target.closest('.swara'); if(!tile) return; const id = tile.dataset.swara; if(selectedSet.has(id)) selectedSet.delete(id); else selectedSet.add(id); renderAllSwaras(); }); } function renderAllSwaras(){ renderSwaraGrid('#swaraGrid', selectedFinderSwaras); renderSwaraGrid('#creatorSwaraGrid', selectedCreatorSwaras); } function setResult(html){ qs('#resultArea').innerHTML = html; currentVisibleContent = qs('#resultArea').innerText.trim() || 'Nāda Mudrā V8.1'; } function identifyRaga(){ const selected = [...selectedFinderSwaras]; if(!selected.length){ setResult('<div class="muted">Please select some swaras first.</div>'); return; } let bestName = null; let bestScore = 0; for (const [name, data] of Object.entries(RAGAS)) { const score = data.swaras.filter(s => selected.includes(s)).length / Math.max(data.swaras.length, selected.length); if(score > bestScore){ bestScore = score; bestName = name; } } if(!bestName){ setResult('<div class="muted">No matching raga found.</div>'); return; } const r = RAGAS[bestName]; setResult(` <div class="result-title">${bestName}</div> <div class="muted">Confidence: ${Math.round(bestScore * 100)}%</div> <div style="margin-top:12px"><span class="pill">${r.genre}</span><span class="pill">${qs('#globalGenreSelect').value}</span></div> <div class="long-output" style="margin-top:16px">Meaning: ${r.meaning} Philosophical context: ${r.philosophy} Suggested mudra linkage: ${r.mudra} Associated beejaksharas: ${r.beejaksharas} Neurological front: ${r.neurological} Scientific front: ${r.scientific} Astrological / traditional front: ${r.astrological} Sacred reference note: ${r.sacred} Swaras: ${r.swaras.join(' - ')}</div> `); } function generateRaga(){ const selected = [...selectedCreatorSwaras]; if(!selected.length){ qs('#creatorResult').innerHTML = '<div class="muted">Please select swaras to generate a raga.</div>'; return; } const name = qs('#creatorName').value.trim() || 'Nava Ranjani'; const rasa = qs('#creatorRasa').value; const genre = qs('#globalGenreSelect').value; const text = ` <div class="result-title">${name}</div> <div class="long-output">Rasa: ${rasa} Genre: ${genre} Selected swaras: ${selected.join(' - ')} Meaning: This created raga is presented as a conceptual melodic framework based on your chosen swaras. Philosophical note: A created raga can be treated as an expressive field where intention, sound, symbolism, and reference come together. Why one may use it: For exploration, composition, contemplative structure, devotional adaptation, or thematic performance. Possible mudra layer: Anjali, Pataka, Hamsasya, or a context-specific expressive mudra may be associated depending on purpose. Possible beejakshara layer: Om, Aim, Hreem, or Shreem may be linked based on devotional, knowledge, or energetic context. Neurological front: Structured pitch selection can help organize attention, expectation, and mood. Scientific front: Interval spacing, repetition, and tonal center influence listener perception and emotional response. Astrological / traditional front: These may be shown as interpretive traditional associations rather than evidence-based claims. Sacred reference readiness: This created raga can be paired with mantra, shloka, Rudram, Lalita, Khadgamala, or other references through the search module. </div> `; qs('#creatorResult').innerHTML = text; currentVisibleContent = qs('#creatorResult').innerText.trim(); } function renderQuickRagas(){ qs('#quickRagas').innerHTML = Object.keys(RAGAS).map(name => ` <div class="sidebar-item" data-raga="${name}">${name}</div> `).join(''); qs('#quickRagas').addEventListener('click', (e) => { const item = e.target.closest('.sidebar-item'); if(!item) return; const name = item.dataset.raga; const swaras = RAGAS[name].swaras; selectedFinderSwaras = new Set(swaras); renderAllSwaras(); identifyRaga(); }); } function renderMudras(filter=''){ const q = filter.toLowerCase().trim(); const list = MUDRAS.filter(m => `${m.name} ${m.category} ${m.meaning} ${m.philosophy} ${m.why} ${m.beejaksharas}`.toLowerCase().includes(q)); qs('#mudraGrid').innerHTML = list.map(m => ` <div class="card"> <div class="section-label">${m.category}</div> <div class="result-title" style="font-size:28px">${m.name}</div> <div class="long-output">Meaning: ${m.meaning} Philosophy: ${m.philosophy} Why one needs to put this mudra: ${m.why} Beejaksharas used: ${m.beejaksharas} Traditional power: ${m.power}</div> </div> `).join('') || '<div class="muted">No mudras found.</div>'; } function renderGenres(){ qs('#genreGrid').innerHTML = GENRES.map(([name,desc]) => ` <div class="card"> <div class="result-title" style="font-size:28px">${name}</div> <div class="long-output">${desc}</div> </div> `).join(''); } function renderSacredResults(query=''){ const q = query.toLowerCase().trim(); if(!q){ qs('#sacredResults').textContent = 'Start typing to see relevant sacred references automatically.'; return; } const matches = SACRED.filter(item => `${item.key} ${item.title} ${item.type} ${item.text} ${item.meaning} ${item.philosophy} ${item.note}`.toLowerCase().includes(q) ); qs('#sacredResults').innerHTML = matches.length ? matches.map(item => ` <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border)"> <div class="result-title" style="font-size:28px">${item.title}</div> <div class="muted">${item.type}</div> <div class="long-output" style="margin-top:10px">Reference text: ${item.text} Meaning: ${item.meaning} Philosophical note: ${item.philosophy} Auto reference behavior: ${item.note}</div> </div> `).join('') : 'No sacred references found for that query.'; currentVisibleContent = qs('#sacredResults').innerText.trim(); } function saveCurrentView(){ const blob = new Blob([currentVisibleContent], { type: 'text/plain' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'nada-mudra-output.txt'; a.click(); URL.revokeObjectURL(url); } async function shareCurrentView(){ const text = currentVisibleContent || 'Nāda Mudrā V8.1'; if(navigator.share){ try { await navigator.share({ title:'Nāda Mudrā V8.1', text }); } catch(e) {} } else { try { await navigator.clipboard.writeText(text); alert('Current view copied to clipboard.'); } catch(e){ alert('Share not supported here.'); } } } function initAudio(){ if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return audioCtx; } function playFluteTone(){ stopFluteTone(); const ctx = initAudio(); const freq = parseFloat(qs('#fluteNote').value); fluteOsc = ctx.createOscillator(); fluteGain = ctx.createGain(); const filter = ctx.createBiquadFilter(); fluteOsc.type = 'sine'; fluteOsc.frequency.value = freq; filter.type = 'lowpass'; filter.frequency.value = 1200; fluteOsc.connect(filter); filter.connect(fluteGain); fluteGain.connect(ctx.destination); fluteGain.gain.setValueAtTime(0.0001, ctx.currentTime); fluteGain.gain.exponentialRampToValueAtTime(0.08, ctx.currentTime + 0.2); fluteOsc.start(); } function stopFluteTone(){ if(fluteOsc){ try { fluteOsc.stop(); } catch(e) {} fluteOsc.disconnect(); fluteOsc = null; } if(fluteGain){ fluteGain.disconnect(); fluteGain = null; } } function switchTab(tabName){ qsa('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabName)); qsa('.pane').forEach(p => p.classList.toggle('active', p.id === `pane-${tabName}`)); currentVisibleContent = qs(`#pane-${tabName}`).innerText.trim(); } function bindEvents(){ qsa('.tab').forEach(tab => { tab.addEventListener('click', () => switchTab(tab.dataset.tab)); }); qs('#themeBtn').addEventListener('click', () => { const dark = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() === '#06060e'; if(dark){ document.documentElement.style.setProperty('--bg','#f6f1e8'); document.documentElement.style.setProperty('--bg2','#ece4d8'); document.documentElement.style.setProperty('--bg3','#dfd7c8'); document.documentElement.style.setProperty('--cream','#2a2118'); document.documentElement.style.setProperty('--muted','#746956'); qs('#themeBtn').textContent = 'Dark'; } else { document.documentElement.removeAttribute('style'); qs('#themeBtn').textContent = 'Light'; } }); qs('#languageSelect').addEventListener('change', (e) => { currentLanguage = e.target.value; renderAllSwaras(); }); qs('#watermarkTone').addEventListener('change', (e) => { document.documentElement.style.setProperty('--watermark-opacity', e.target.value); }); qs('#identifyBtn').addEventListener('click', identifyRaga); qs('#clearBtn').addEventListener('click', () => { selectedFinderSwaras.clear(); renderAllSwaras(); setResult('<div class="muted">Select swaras and click <strong>Identify Rāga</strong>.</div>'); }); qs('#randomBtn').addEventListener('click', () => { const keys = Object.keys(RAGAS); const pick = keys[Math.floor(Math.random() * keys.length)]; selectedFinderSwaras = new Set(RAGAS[pick].swaras); renderAllSwaras(); identifyRaga(); }); qs('#generateBtn').addEventListener('click', generateRaga); qs('#clearCreatorBtn').addEventListener('click', () => { selectedCreatorSwaras.clear(); qs('#creatorName').value = ''; renderAllSwaras(); qs('#creatorResult').innerHTML = '<div class="muted">Generate a raga to see full interpretation.</div>'; }); qs('#mudraSearch').addEventListener('input', (e) => renderMudras(e.target.value)); qs('#sacredSearch').addEventListener('input', (e) => renderSacredResults(e.target.value)); qs('#printBtn').addEventListener('click', () => window.print()); qs('#printBtn2').addEventListener('click', () => window.print()); qs('#saveBtn').addEventListener('click', saveCurrentView); qs('#saveBtn2').addEventListener('click', saveCurrentView); qs('#shareBtn').addEventListener('click', shareCurrentView); qs('#shareBtn2').addEventListener('click', shareCurrentView); qs('#playFluteBtn').addEventListener('click', playFluteTone); qs('#stopFluteBtn').addEventListener('click', stopFluteTone); } function init(){ renderAllSwaras(); bindSwaraGrid('#swaraGrid', selectedFinderSwaras); bindSwaraGrid('#creatorSwaraGrid', selectedCreatorSwaras); renderQuickRagas(); renderMudras(); renderGenres(); bindEvents(); } init(); </script> 
+   </body>
 </html>
