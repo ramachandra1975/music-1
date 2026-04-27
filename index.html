@@ -3,62 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nāda Mudrā V8.3 — Interactive Draft</title>
+  <title>Nāda Mudrā V9 — Encyclopedia Draft</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#06060e;--bg2:#0d1020;--bg3:#151a30;--gold:#c8a84b;--gold2:#ead18d;--cream:#f2ecdf;
-      --muted:#9a93ab;--sage:#79a98b;--lav:#9a8ddb;--rose:#c07aa0;--saffron:#d57a33;
-      --border:rgba(200,168,75,.16);--border2:rgba(200,168,75,.32);--glow:rgba(200,168,75,.08);
-      --watermark-opacity:.06;
+      --bg:#07070f;--bg2:#101427;--bg3:#171d36;--gold:#c8a84b;--gold2:#ecd792;--cream:#f3ecdf;
+      --muted:#9a94ad;--sage:#79a98b;--lav:#9a8ddb;--rose:#c07aa0;--border:rgba(200,168,75,.16);
+      --border2:rgba(200,168,75,.34);--glow:rgba(200,168,75,.08);--watermark-opacity:.06;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{
       font-family:'Outfit',system-ui,sans-serif;
       background:
-        radial-gradient(circle at 20% 15%, rgba(200,168,75,.08), transparent 22%),
-        radial-gradient(circle at 80% 20%, rgba(122,169,139,.08), transparent 20%),
+        radial-gradient(circle at 15% 18%, rgba(200,168,75,.08), transparent 20%),
+        radial-gradient(circle at 82% 18%, rgba(121,169,139,.08), transparent 18%),
         radial-gradient(circle at 50% 70%, rgba(154,141,219,.08), transparent 24%),
         linear-gradient(180deg,var(--bg),var(--bg2) 45%,var(--bg3));
-      color:var(--cream);min-height:100vh;font-size:20px;line-height:1.78;overflow-x:hidden;position:relative;
+      color:var(--cream);font-size:20px;line-height:1.78;min-height:100vh;overflow-x:hidden;position:relative;
     }
     body::before{
       content:"♪ ♫ ♪";position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
-      font-family:'Cormorant Garamond',serif;font-size:150px;letter-spacing:20px;
-      color:rgba(234,209,141,var(--watermark-opacity));pointer-events:none;z-index:0;
+      font-family:'Cormorant Garamond',serif;font-size:150px;letter-spacing:22px;
+      color:rgba(236,215,146,var(--watermark-opacity));pointer-events:none;z-index:0;
     }
     header,.topbar,.tabs,main{position:relative;z-index:1}
-    header{padding:24px 32px 10px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--border);background:rgba(6,6,14,.35);backdrop-filter:blur(8px)}
+    header{padding:24px 32px 10px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--border);background:rgba(7,7,15,.34);backdrop-filter:blur(8px)}
     .brand-wrap{display:flex;gap:16px;align-items:flex-start}.logo-box{width:60px;height:60px;border-radius:15px;border:1px solid var(--border2);display:grid;place-items:center;background:linear-gradient(135deg,rgba(200,168,75,.14),rgba(154,141,219,.12));font-size:28px;color:var(--gold2)}
-    .brand-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;color:var(--gold2);line-height:1}.brand-title span{color:var(--gold);font-style:italic}.brand-sub{color:var(--muted);margin-top:6px;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+    .brand-title{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;color:var(--gold2);line-height:1}.brand-title span{color:var(--gold);font-style:italic}.brand-sub{color:var(--muted);margin-top:6px;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
     .header-actions{display:flex;gap:10px;flex-wrap:wrap}
-    .small-btn,.btn,.tab,.swara-pill,.expr-pill{border:1px solid var(--border2);background:rgba(255,255,255,.02);color:var(--cream);cursor:pointer;transition:.2s ease}
-    .small-btn:hover,.btn:hover,.tab:hover,.swara-pill:hover,.expr-pill:hover{border-color:var(--gold);background:var(--glow)}
+    .small-btn,.btn,.tab{border:1px solid var(--border2);background:rgba(255,255,255,.02);color:var(--cream);cursor:pointer;transition:.2s ease}
+    .small-btn:hover,.btn:hover,.tab:hover{border-color:var(--gold);background:var(--glow)}
     .small-btn{padding:8px 12px;border-radius:8px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-    .btn{padding:10px 16px;border-radius:10px;font-size:14px}.btn.primary{background:rgba(200,168,75,.12);border-color:var(--gold);color:var(--gold2)}.btn.sage{border-color:rgba(121,169,139,.45);color:var(--sage)}.btn.rose{border-color:rgba(192,122,160,.45);color:var(--rose)}
+    .btn{padding:10px 16px;border-radius:10px;font-size:14px}.btn.primary{background:rgba(200,168,75,.12);border-color:var(--gold);color:var(--gold2)}
     .topbar{padding:12px 32px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--border);background:rgba(200,168,75,.03)}
     .field-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.12em}
     select,input[type="text"],textarea{background:var(--bg2);color:var(--cream);border:1px solid var(--border);border-radius:10px;padding:10px 12px;outline:none}
     .tabs{display:flex;gap:4px;overflow:auto;padding:0 24px;border-bottom:1px solid var(--border)}.tabs::-webkit-scrollbar{height:0}
     .tab{white-space:nowrap;padding:14px 18px;border:none;border-bottom:2px solid transparent;border-radius:0;background:none;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.12em}.tab.active{color:var(--gold2);border-bottom-color:var(--gold)}
-    main{max-width:1360px;margin:0 auto;padding:32px}.pane{display:none}.pane.active{display:block}
-    .title{font-family:'Cormorant Garamond',serif;font-size:46px;color:var(--gold2);font-weight:400;margin-bottom:6px}.subtitle{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--muted);font-style:italic;margin-bottom:24px}
+    main{max-width:1380px;margin:0 auto;padding:32px}.pane{display:none}.pane.active{display:block}
+    .title{font-family:'Cormorant Garamond',serif;font-size:48px;color:var(--gold2);font-weight:400;margin-bottom:6px}.subtitle{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--muted);font-style:italic;margin-bottom:24px}
     .grid-2{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px}.grid-auto{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-    .card{background:rgba(13,16,32,.92);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.16)}
+    .card{background:rgba(16,20,39,.92);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.16)}
     .section-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.16em;margin-bottom:10px;display:flex;align-items:center;gap:10px}.section-label::after{content:"";height:1px;flex:1;background:var(--border)}
     .swara-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px}.swara{padding:12px 8px;border-radius:12px;border:1px solid var(--border);background:var(--bg2);text-align:center;cursor:pointer;user-select:none;transition:.15s ease}.swara:hover{border-color:var(--gold)}.swara.active{background:rgba(200,168,75,.14);border-color:var(--gold)}.swara .main{display:block;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream)}.swara .sub{display:block;font-size:11px;color:var(--muted);margin-top:2px}
-    .action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.result-title{font-family:'Cormorant Garamond',serif;font-size:38px;color:var(--gold2);margin-bottom:4px}.muted{color:var(--muted)}.pill{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;border:1px solid var(--border2);color:var(--gold2);margin:4px 6px 0 0}
-    .sidebar-list{display:flex;flex-direction:column;gap:8px}.sidebar-item{padding:10px 12px;border:1px solid var(--border);border-radius:10px;cursor:pointer;background:var(--bg2)}.sidebar-item:hover{border-color:var(--gold)}
-    .long-output{white-space:pre-wrap;max-height:560px;overflow:auto;padding-right:6px}.search-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.search-row input{min-width:240px;flex:1}
+    .action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.result-title{font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold2);margin-bottom:4px}.muted{color:var(--muted)}.long-output{white-space:pre-wrap;max-height:560px;overflow:auto;padding-right:6px}
+    .search-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.search-row input{min-width:240px;flex:1}.entry-card{padding:16px;border-radius:14px;border:1px solid var(--border);background:var(--bg2)}
+    .entry-head{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold2);margin-bottom:6px}.entry-meta{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
     .footer-actions{position:sticky;bottom:10px;display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:20px;z-index:2}
-    .audio-strip,.pill-wrap{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.swara-pill,.expr-pill{padding:10px 12px;border-radius:12px;font-size:14px}.swara-pill.active,.expr-pill.active{background:rgba(200,168,75,.14);border-color:var(--gold);color:var(--gold2)}
-    .record-status{font-size:14px;color:var(--muted);margin-top:10px}
-    audio{width:100%;margin-top:12px}
     @media (max-width: 980px){.grid-2{grid-template-columns:1fr}.swara-grid{grid-template-columns:repeat(4,minmax(0,1fr))}main{padding:20px}header,.topbar{padding-left:20px;padding-right:20px}}
-    @media print{body{background:#fff!important;color:#000!important;font-size:13pt}.tabs,.topbar,.header-actions,.action-row,.footer-actions,.sidebar-only{display:none!important}header{border-bottom:1px solid #ccc;background:#fff!important}.pane{display:none!important}.pane.active{display:block!important}.card{border:1px solid #ccc;background:#fff!important;box-shadow:none}.title,.result-title,.brand-title{color:#000!important}.subtitle,.muted,.brand-sub{color:#444!important}}
+    @media print{body{background:#fff!important;color:#000!important;font-size:13pt}.tabs,.topbar,.header-actions,.action-row,.footer-actions,.sidebar-only{display:none!important}header{border-bottom:1px solid #ccc;background:#fff!important}.pane{display:none!important}.pane.active{display:block!important}.card,.entry-card{border:1px solid #ccc;background:#fff!important;box-shadow:none}.title,.result-title,.brand-title,.entry-head{color:#000!important}.subtitle,.muted,.brand-sub,.entry-meta{color:#444!important}}
   </style>
 </head>
 <body>
@@ -66,12 +62,11 @@
     <div class="brand-wrap">
       <div class="logo-box">🎼</div>
       <div>
-        <div class="brand-title">Nāda <span>Mudrā</span> V8.3</div>
-        <div class="brand-sub">Interactive Rāga · Mudrā · Sacred References · Recording</div>
+        <div class="brand-title">Nāda <span>Mudrā</span> V9</div>
+        <div class="brand-sub">Mudrā · Shloka · Metaphor Encyclopedia · Instant Search</div>
       </div>
     </div>
     <div class="header-actions">
-      <button class="small-btn" id="themeBtn">Light</button>
       <button class="small-btn" id="printBtn">Print</button>
       <button class="small-btn" id="saveBtn">Save</button>
       <button class="small-btn" id="shareBtn">Share</button>
@@ -79,235 +74,187 @@
   </header>
 
   <div class="topbar">
-    <div class="field-row"><span class="label">Script</span>
+    <div class="field-row"><span class="label">Language</span>
       <select id="languageSelect">
-        <option value="roman">Carnatic Roman</option><option value="sanskrit">संस्कृत</option><option value="hindi">हिंदी</option><option value="telugu">తెలుగు</option><option value="tamil">தமிழ்</option><option value="kannada">ಕನ್ನಡ</option><option value="malayalam">മലയാളം</option><option value="western">Western</option>
+        <option value="english">English</option>
+        <option value="hindi">Hindi</option>
+        <option value="telugu">Telugu</option>
+        <option value="tamil">Tamil</option>
+        <option value="malayalam">Malayalam</option>
+        <option value="kannada">Kannada</option>
+        <option value="tulu">Tulu</option>
+        <option value="sanskrit">Sanskrit</option>
+        <option value="other">Other / Selective Language</option>
       </select>
-    </div>
-    <div class="field-row"><span class="label">Genre</span>
-      <select id="globalGenreSelect"><option>Classical</option><option>Semi-Classical</option><option>Folk</option><option>Light</option><option>Soft</option><option>Filmy</option><option>Devotional</option><option>Meditative</option></select>
     </div>
   </div>
 
   <div class="tabs">
-    <button class="tab active" data-tab="finder">Rāga Finder</button>
-    <button class="tab" data-tab="creator">Rāga Creator</button>
-    <button class="tab" data-tab="swaraexp">Swara Expression</button>
-    <button class="tab" data-tab="recording">Recording</button>
-    <button class="tab" data-tab="sacred">Sacred References</button>
+    <button class="tab active" data-tab="manual">Instruction Manual</button>
+    <button class="tab" data-tab="mudras">Mudrā Encyclopedia</button>
+    <button class="tab" data-tab="shlokas">Shloka Encyclopedia</button>
+    <button class="tab" data-tab="metaphors">Metaphor Encyclopedia</button>
+    <button class="tab" data-tab="finder">Rāga Finder</button>
   </div>
 
   <main>
-    <section class="pane active" id="pane-finder">
+    <section class="pane active" id="pane-manual">
+      <div class="title">Instruction Manual</div>
+      <div class="subtitle">How to use the encyclopedia modules and instant search.</div>
+      <div class="card long-output">1. Choose the language from the top language selector.
+
+2. Open Mudrā Encyclopedia, Shloka Encyclopedia, or Metaphor Encyclopedia.
+
+3. Type in the search box — results will come immediately while typing.
+
+4. You can search by mudra name, shloka word, beejakshara, philosophical idea, or metaphorical phrase.
+
+5. Use Print, Save, or Share to take the visible result in the selected language mode.
+
+6. The current language layer is a structured display mode and can be expanded further later.</div>
+    </section>
+
+    <section class="pane" id="pane-mudras">
+      <div class="title">Mudrā Encyclopedia</div>
+      <div class="subtitle">Instant search library for mudras across classical dance forms.</div>
+      <div class="search-row"><input type="text" id="mudraSearch" placeholder="Search mudra, dance form, meaning, beejakshara..." /></div>
+      <div class="grid-auto" id="mudraResults"></div>
+    </section>
+
+    <section class="pane" id="pane-shlokas">
+      <div class="title">Shloka Encyclopedia</div>
+      <div class="subtitle">Instant search for shlokas, mantras, beejaksharas, and sacred phrases.</div>
+      <div class="search-row"><input type="text" id="shlokaSearch" placeholder="Search shloka, mantra, beejakshara, Tat Tvam Asi..." /></div>
+      <div class="grid-auto" id="shlokaResults"></div>
+    </section>
+
+    <section class="pane" id="pane-metaphors">
+      <div class="title">Metaphor Encyclopedia</div>
+      <div class="subtitle">Instant search for Vedic and Upanishadic metaphorical ideas and phrases.</div>
+      <div class="search-row"><input type="text" id="metaphorSearch" placeholder="Search metaphor, symbolism, Upanishadic idea..." /></div>
+      <div class="grid-auto" id="metaphorResults"></div>
+    </section>
+
+    <section class="pane" id="pane-finder">
       <div class="title">Rāga Finder</div>
-      <div class="subtitle">Choose swaras and identify a raga.</div>
-      <div class="grid-2">
-        <div>
-          <div class="card">
-            <div class="section-label">Select Swaras</div>
-            <div class="swara-grid" id="swaraGrid"></div>
-            <div class="action-row">
-              <button class="btn primary" id="identifyBtn">Identify Rāga</button>
-              <button class="btn" id="clearBtn">Clear</button>
-            </div>
-          </div>
-          <div class="card" style="margin-top:16px">
-            <div class="section-label">Result</div>
-            <div id="resultArea"><div class="muted">Select swaras and identify.</div></div>
-          </div>
-        </div>
-        <aside class="sidebar-only">
-          <div class="card"><div class="section-label">Quick Ragas</div><div class="sidebar-list" id="quickRagas"></div></div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="pane" id="pane-creator">
-      <div class="title">Rāga Creator</div>
-      <div class="subtitle">Create a concept raga from selected swaras.</div>
+      <div class="subtitle">Simple working raga finder kept as part of the draft.</div>
       <div class="card">
-        <div class="section-label">Create</div>
-        <div class="search-row">
-          <input type="text" id="creatorName" placeholder="Rāga name (optional)">
-          <select id="creatorRasa"><option>Bhakti</option><option>Karuna</option><option>Shringara</option><option>Shanta</option><option>Veera</option><option>Adbhuta</option></select>
-        </div>
-        <div class="swara-grid" id="creatorSwaraGrid"></div>
-        <div class="action-row"><button class="btn primary" id="generateBtn">Generate</button><button class="btn" id="clearCreatorBtn">Clear</button></div>
-      </div>
-      <div class="card" style="margin-top:16px"><div class="section-label">Created Result</div><div id="creatorResult" class="muted">Generate a raga to see output.</div></div>
-    </section>
-
-    <section class="pane" id="pane-swaraexp">
-      <div class="title">Swara Expression Grid</div>
-      <div class="subtitle">Clickable swara and expressive syllable selections including stronger forms and vowel liberties.</div>
-      <div class="card">
-        <div class="section-label">Base Swaras</div>
-        <div class="pill-wrap" id="baseSwaraWrap"></div>
-      </div>
-      <div class="card" style="margin-top:16px">
-        <div class="section-label">Expressive / Strong Variants</div>
-        <div class="pill-wrap" id="exprWrap"></div>
-      </div>
-      <div class="card" style="margin-top:16px">
-        <div class="section-label">Selected Expression Output</div>
-        <div id="swaraExpOutput" class="long-output muted">Click swaras or expression sounds to build a phrase panel.</div>
-      </div>
-    </section>
-
-    <section class="pane" id="pane-recording">
-      <div class="title">Recording Facility</div>
-      <div class="subtitle">Basic browser microphone recording for users.</div>
-      <div class="card">
-        <div class="section-label">Voice Recording</div>
+        <div class="section-label">Select Swaras</div>
+        <div class="swara-grid" id="swaraGrid"></div>
         <div class="action-row">
-          <button class="btn primary" id="recordBtn">Start Recording</button>
-          <button class="btn" id="stopRecordBtn">Stop</button>
-          <button class="btn sage" id="playRecordingBtn">Play Latest</button>
-          <button class="btn rose" id="downloadRecordingBtn">Download</button>
+          <button class="btn primary" id="identifyBtn">Identify</button>
+          <button class="btn" id="clearBtn">Clear</button>
         </div>
-        <div class="record-status" id="recordStatus">Microphone not started.</div>
-        <audio id="audioPlayback" controls class="hidden"></audio>
       </div>
-    </section>
-
-    <section class="pane" id="pane-sacred">
-      <div class="title">Sacred References</div>
-      <div class="subtitle">Type a sacred reference to get auto-matched output.</div>
-      <div class="search-row"><input type="text" id="sacredSearch" placeholder="Type Tat Tvam Asi, Rudram, Hreem, Lalita..." /></div>
-      <div class="card"><div class="section-label">Auto Reference Output</div><div id="sacredResults" class="long-output">Start typing to see sacred references automatically.</div></div>
+      <div class="card" style="margin-top:16px">
+        <div class="section-label">Result</div>
+        <div id="ragaResult" class="muted">Select swaras and click Identify.</div>
+      </div>
     </section>
 
     <div class="footer-actions">
       <button class="btn" id="printBtn2">Print Current View</button>
       <button class="btn" id="saveBtn2">Save Current View</button>
-      <button class="btn rose" id="shareBtn2">Share Current View</button>
+      <button class="btn primary" id="shareBtn2">Share Current View</button>
     </div>
   </main>
 
   <script>
-    const SWARAS = [
-      { id:'S', name:'Sa', western:'C', langs:{ roman:'Sa', sanskrit:'षड्ज', hindi:'सा', telugu:'సా', tamil:'ச', kannada:'ಸ', malayalam:'സ', western:'C' } },
-      { id:'R', name:'Re', western:'D', langs:{ roman:'Re', sanskrit:'ऋ', hindi:'रे', telugu:'రి', tamil:'ரி', kannada:'ರಿ', malayalam:'രി', western:'D' } },
-      { id:'G', name:'Ga', western:'E', langs:{ roman:'Ga', sanskrit:'ग', hindi:'ग', telugu:'గ', tamil:'க', kannada:'ಗ', malayalam:'ഗ', western:'E' } },
-      { id:'M', name:'Ma', western:'F', langs:{ roman:'Ma', sanskrit:'म', hindi:'म', telugu:'మ', tamil:'ம', kannada:'ಮ', malayalam:'മ', western:'F' } },
-      { id:'P', name:'Pa', western:'G', langs:{ roman:'Pa', sanskrit:'प', hindi:'प', telugu:'ప', tamil:'ப', kannada:'ಪ', malayalam:'പ', western:'G' } },
-      { id:'D', name:'Da', western:'A', langs:{ roman:'Da', sanskrit:'ध', hindi:'ध', telugu:'ద', tamil:'த', kannada:'ದ', malayalam:'ദ', western:'A' } },
-      { id:'N', name:'Ni', western:'B', langs:{ roman:'Ni', sanskrit:'नि', hindi:'नि', telugu:'ని', tamil:'நி', kannada:'ನಿ', malayalam:'നി', western:'B' } }
+    const MUDRAS = [
+      {name:'Pataka',form:'Bharatanatyam / Kuchipudi / Kathak',meaning:'Flag, statement, stillness',philosophy:'A gesture of declaration and iconic expression.',beejakshara:'Om',usage:'Used for clouds, refusal, statement, blessing.'},
+      {name:'Anjali',form:'All classical forms',meaning:'Reverence, offering, prayer',philosophy:'Embodies devotion and inward union.',beejakshara:'Hreem / Shreem',usage:'Used for prayer, salutation, surrender.'},
+      {name:'Hamsasya',form:'Bharatanatyam / Mohiniyattam',meaning:'Delicacy, subtle indication',philosophy:'Represents refined grace and soft articulation.',beejakshara:'Aim',usage:'Used for fine detail, beauty, delicate expression.'},
+      {name:'Alapadma',form:'Bharatanatyam / Odissi',meaning:'Lotus, blossoming',philosophy:'Represents unfolding consciousness and radiance.',beejakshara:'Shreem',usage:'Used for lotus, beauty, ornamentation.'},
+      {name:'Tripataka',form:'Bharatanatyam / Kathakali',meaning:'Projection, crown, force',philosophy:'Represents directional power and dramatic assertion.',beejakshara:'Hreem',usage:'Used for crown, weapon, tree, forceful depiction.'}
     ];
 
-    const EXPRESSIONS = [
-      'Strong Da','Strong Pa','Strong Ni','Strong Nee','Strong Dha','Aa','Ee','Oo','Ai','Ae','Hm','Tha','Nam','Tom','Ta','Ri','Na'
+    const SHLOKAS = [
+      {title:'Tat Tvam Asi',type:'Mahavakya',text:'That Thou Art',meaning:'The deepest self is not separate from ultimate reality.',philosophy:'Identity of jiva and Brahman in Upanishadic insight.'},
+      {title:'Gayatri Mantra',type:'Mantra',text:'Om Bhur Bhuvah Svah...',meaning:'Prayer for illumination of the intellect.',philosophy:'Knowledge is awakened through sacred light.'},
+      {title:'Hreem',type:'Beejakshara',text:'Sacred seed syllable',meaning:'Associated traditionally with Devi power and radiance.',philosophy:'A compact sacred sound with symbolic force.'},
+      {title:'Lalita Sahasranamavali',type:'Sacred Reference',text:'Thousand names of the Divine Mother',meaning:'A many-sided sacred mapping of Devi consciousness.',philosophy:'The Divine Mother is both transcendent and intimate.'},
+      {title:'Sri Rudram',type:'Vedic Reference',text:'Hymn to Rudra',meaning:'A sacred seeing of divinity in all forms.',philosophy:'The sacred pervades the whole cosmos.'}
     ];
 
+    const METAPHORS = [
+      {title:'Lotus of the Heart',source:'Upanishadic / Yogic symbolic language',meaning:'The heart as a subtle sacred center.',philosophy:'Consciousness flowers inwardly before realization.'},
+      {title:'Light of Lights',source:'Upanishadic symbolism',meaning:'The light behind all lights and knowing.',philosophy:'The ultimate reality is the source of all illumination.'},
+      {title:'Ocean and Wave',source:'Vedantic metaphor',meaning:'Individual and absolute are not truly separate.',philosophy:'Difference appears, essence remains one.'},
+      {title:'Chariot of the Self',source:'Katha Upanishad symbolic teaching',meaning:'Body, senses, mind, intellect, and Self arranged as a disciplined vehicle.',philosophy:'Right guidance leads the seeker toward truth.'},
+      {title:'Space in the Pot',source:'Advaitic metaphor',meaning:'Limited space seems separate, but is never apart from vast space.',philosophy:'Apparent individuality does not divide the absolute.'}
+    ];
+
+    const SWARAS = ['Sa','Re','Ga','Ma','Pa','Da','Ni'];
     const RAGAS = {
-      Mohanam:{swaras:['S','R','G','P','D'],meaning:'Sweet pentatonic openness.'},
-      Kalyani:{swaras:['S','R','G','M','P','D','N'],meaning:'Auspicious expansive brightness.'},
-      Hamsadhwani:{swaras:['S','R','G','P','N'],meaning:'Joyful invocatory brightness.'}
+      Mohanam:['Sa','Re','Ga','Pa','Da'],
+      Hamsadhwani:['Sa','Re','Ga','Pa','Ni'],
+      Kalyani:['Sa','Re','Ga','Ma','Pa','Da','Ni']
     };
 
-    const SACRED = [
-      { key:'tat tvam asi', title:'Tat Tvam Asi', text:'A Mahavakya from the Upanishadic tradition meaning “That Thou Art.”', meaning:'The individual self is not separate from ultimate reality.', philosophy:'Identity between the deepest self and the Absolute.', note:'Should appear when user types Tat Tvam Asi.' },
-      { key:'rudram', title:'Sri Rudram', text:'Vedic hymn to Rudra.', meaning:'Divinity pervading all forms.', philosophy:'The sacred is present in all existence.', note:'Appears for Rudram.' },
-      { key:'hreem', title:'Hreem', text:'A beejakshara associated traditionally with Devi consciousness.', meaning:'Sacred force and radiance.', philosophy:'Seed sound as concentrated sacred meaning.', note:'Appears for Hreem.' }
-    ];
+    let currentVisibleContent = 'Nāda Mudrā V9';
+    let selectedSwaras = new Set();
 
-    let currentLanguage = 'roman';
-    let selectedFinderSwaras = new Set();
-    let selectedCreatorSwaras = new Set();
-    let selectedExpr = [];
-    let currentVisibleContent = 'Nāda Mudrā V8.3';
-    let mediaRecorder = null;
-    let recordedChunks = [];
-    let recordedBlob = null;
+    const qs = (s,root=document)=>root.querySelector(s);
+    const qsa = (s,root=document)=>[...root.querySelectorAll(s)];
 
-    const qs = (s, root=document) => root.querySelector(s);
-    const qsa = (s, root=document) => [...root.querySelectorAll(s)];
+    function switchTab(name){
+      qsa('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===name));
+      qsa('.pane').forEach(p=>p.classList.toggle('active',p.id===`pane-${name}`));
+      currentVisibleContent = qs(`#pane-${name}`).innerText.trim();
+    }
 
-    function displaySwara(sw){ return sw.langs[currentLanguage] || sw.langs.roman || sw.name; }
+    function renderEntries(data, target, type){
+      qs(target).innerHTML = data.map(item=>`
+        <div class="entry-card">
+          <div class="entry-head">${item.name || item.title}</div>
+          <div class="entry-meta">${item.form || item.type || item.source || type}</div>
+          <div class="long-output">Meaning: ${item.meaning}\n\nPhilosophy: ${item.philosophy}${item.beejakshara ? `\n\nBeejakshara: ${item.beejakshara}`:''}${item.usage ? `\n\nUsage: ${item.usage}`:''}${item.text ? `\n\nText: ${item.text}`:''}</div>
+        </div>
+      `).join('') || '<div class="muted">No results found.</div>';
+    }
 
-    function renderSwaraGrid(targetId, selectedSet){
-      qs(targetId).innerHTML = SWARAS.map(sw => `
-        <div class="swara ${selectedSet.has(sw.id)?'active':''}" data-swara="${sw.id}">
-          <span class="main">${displaySwara(sw)}</span>
-          <span class="sub">${sw.western}</span>
+    function liveFilter(list, query, keys){
+      const q = query.toLowerCase().trim();
+      if(!q) return list;
+      return list.filter(item => keys.some(k => (item[k] || '').toLowerCase().includes(q)));
+    }
+
+    function renderMudras(query=''){
+      renderEntries(liveFilter(MUDRAS, query, ['name','form','meaning','philosophy','beejakshara','usage']), '#mudraResults', 'Mudra');
+      currentVisibleContent = qs('#pane-mudras').innerText.trim();
+    }
+
+    function renderShlokas(query=''){
+      renderEntries(liveFilter(SHLOKAS, query, ['title','type','text','meaning','philosophy']), '#shlokaResults', 'Shloka');
+      currentVisibleContent = qs('#pane-shlokas').innerText.trim();
+    }
+
+    function renderMetaphors(query=''){
+      renderEntries(liveFilter(METAPHORS, query, ['title','source','meaning','philosophy']), '#metaphorResults', 'Metaphor');
+      currentVisibleContent = qs('#pane-metaphors').innerText.trim();
+    }
+
+    function renderSwaras(){
+      qs('#swaraGrid').innerHTML = SWARAS.map(sw=>`
+        <div class="swara ${selectedSwaras.has(sw)?'active':''}" data-swara="${sw}">
+          <span class="main">${sw}</span>
+          <span class="sub">note</span>
         </div>
       `).join('');
     }
 
-    function renderQuickRagas(){
-      qs('#quickRagas').innerHTML = Object.keys(RAGAS).map(name => `<div class="sidebar-item" data-raga="${name}">${name}</div>`).join('');
-    }
-
-    function renderSwaraExpression(){
-      qs('#baseSwaraWrap').innerHTML = SWARAS.map(sw => `<button class="swara-pill" data-sound="${sw.name}">${sw.name}</button>`).join('');
-      qs('#exprWrap').innerHTML = EXPRESSIONS.map(x => `<button class="expr-pill" data-sound="${x}">${x}</button>`).join('');
-    }
-
-    function updateSwaraExpressionOutput(){
-      qs('#swaraExpOutput').textContent = selectedExpr.length ? selectedExpr.join(' · ') : 'Click swaras or expression sounds to build a phrase panel.';
-      currentVisibleContent = qs('#swaraExpOutput').textContent;
-    }
-
     function identifyRaga(){
-      const selected = [...selectedFinderSwaras];
-      if(!selected.length){ qs('#resultArea').innerHTML = '<div class="muted">Please select swaras first.</div>'; return; }
+      const selected = [...selectedSwaras];
       let best = null, bestScore = 0;
-      for(const [name,data] of Object.entries(RAGAS)){
-        const score = data.swaras.filter(x => selected.includes(x)).length / Math.max(data.swaras.length, selected.length);
-        if(score > bestScore){ bestScore = score; best = {name, ...data}; }
+      for(const [name, sws] of Object.entries(RAGAS)){
+        const score = sws.filter(x=>selected.includes(x)).length / Math.max(sws.length, selected.length || 1);
+        if(score > bestScore){ bestScore = score; best = {name, sws}; }
       }
-      qs('#resultArea').innerHTML = best ? `<div class="result-title">${best.name}</div><div class="long-output">Meaning: ${best.meaning}\n\nSwaras: ${best.swaras.join(' - ')}</div>` : '<div class="muted">No match found.</div>';
-      currentVisibleContent = qs('#resultArea').innerText.trim();
+      qs('#ragaResult').innerHTML = best ? `<div class="result-title">${best.name}</div><div class="long-output">Swaras: ${best.sws.join(' - ')}\n\nConfidence: ${Math.round(bestScore*100)}%</div>` : 'No match found.';
+      currentVisibleContent = qs('#pane-finder').innerText.trim();
     }
 
-    function generateRaga(){
-      const name = qs('#creatorName').value.trim() || 'Nava Raga';
-      const rasa = qs('#creatorRasa').value;
-      const sw = [...selectedCreatorSwaras].join(' - ');
-      qs('#creatorResult').innerHTML = `<div class="result-title">${name}</div><div class="long-output">Rasa: ${rasa}\n\nSelected Swaras: ${sw || 'None'}\n\nThis is a concept raga draft generated from your selected swaras.</div>`;
-      currentVisibleContent = qs('#creatorResult').innerText.trim();
-    }
-
-    function renderSacredResults(query=''){
-      const q = query.toLowerCase().trim();
-      if(!q){ qs('#sacredResults').textContent = 'Start typing to see sacred references automatically.'; return; }
-      const matches = SACRED.filter(x => `${x.key} ${x.title} ${x.text} ${x.meaning} ${x.philosophy}`.toLowerCase().includes(q));
-      qs('#sacredResults').innerHTML = matches.length ? matches.map(x => `<div style="margin-bottom:18px"><div class="result-title" style="font-size:28px">${x.title}</div><div class="long-output">${x.text}\n\nMeaning: ${x.meaning}\n\nPhilosophy: ${x.philosophy}\n\n${x.note}</div></div>`).join('') : 'No sacred reference found.';
-      currentVisibleContent = qs('#sacredResults').innerText.trim();
-    }
-
-    async function startRecording(){
-      try{
-        const stream = await navigator.mediaDevices.getUserMedia({ audio:true });
-        recordedChunks = [];
-        mediaRecorder = new MediaRecorder(stream);
-        mediaRecorder.ondataavailable = e => { if(e.data.size > 0) recordedChunks.push(e.data); };
-        mediaRecorder.onstop = () => {
-          recordedBlob = new Blob(recordedChunks, { type:'audio/webm' });
-          const url = URL.createObjectURL(recordedBlob);
-          const audio = qs('#audioPlayback');
-          audio.src = url;
-          audio.classList.remove('hidden');
-          qs('#recordStatus').textContent = 'Recording completed.';
-        };
-        mediaRecorder.start();
-        qs('#recordStatus').textContent = 'Recording...';
-      }catch(err){
-        qs('#recordStatus').textContent = 'Microphone access failed or not supported.';
-      }
-    }
-
-    function stopRecording(){ if(mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop(); }
-    function playLatestRecording(){ const audio = qs('#audioPlayback'); if(audio.src) audio.play(); }
-    function downloadLatestRecording(){
-      if(!recordedBlob) return;
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(recordedBlob);
-      a.download = 'nada-mudra-recording.webm';
-      a.click();
-    }
-
-    function saveCurrentView(){
+    function saveCurrent(){
       const blob = new Blob([currentVisibleContent], {type:'text/plain'});
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -315,71 +262,37 @@
       a.click();
     }
 
-    async function shareCurrentView(){
-      if(navigator.share){ try{ await navigator.share({ title:'Nāda Mudrā', text:currentVisibleContent }); }catch(e){} }
+    async function shareCurrent(){
+      if(navigator.share){ try{ await navigator.share({ title:'Nāda Mudrā V9', text:currentVisibleContent }); }catch(e){} }
       else { try{ await navigator.clipboard.writeText(currentVisibleContent); alert('Copied to clipboard.'); }catch(e){} }
     }
 
-    function switchTab(name){
-      qsa('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
-      qsa('.pane').forEach(p => p.classList.toggle('active', p.id === `pane-${name}`));
-      currentVisibleContent = qs(`#pane-${name}`).innerText.trim();
-    }
-
     function bind(){
-      qsa('.tab').forEach(tab => tab.addEventListener('click', () => switchTab(tab.dataset.tab)));
-      qs('#languageSelect').addEventListener('change', e => { currentLanguage = e.target.value; renderSwaraGrid('#swaraGrid', selectedFinderSwaras); renderSwaraGrid('#creatorSwaraGrid', selectedCreatorSwaras); });
-
-      qs('#swaraGrid').addEventListener('click', e => {
-        const el = e.target.closest('.swara'); if(!el) return;
-        const id = el.dataset.swara; selectedFinderSwaras.has(id) ? selectedFinderSwaras.delete(id) : selectedFinderSwaras.add(id); renderSwaraGrid('#swaraGrid', selectedFinderSwaras);
+      qsa('.tab').forEach(tab=>tab.addEventListener('click',()=>switchTab(tab.dataset.tab)));
+      qs('#mudraSearch').addEventListener('input', e=>renderMudras(e.target.value));
+      qs('#shlokaSearch').addEventListener('input', e=>renderShlokas(e.target.value));
+      qs('#metaphorSearch').addEventListener('input', e=>renderMetaphors(e.target.value));
+      qs('#swaraGrid').addEventListener('click', e=>{
+        const box = e.target.closest('.swara'); if(!box) return;
+        const sw = box.dataset.swara;
+        selectedSwaras.has(sw) ? selectedSwaras.delete(sw) : selectedSwaras.add(sw);
+        renderSwaras();
       });
-      qs('#creatorSwaraGrid').addEventListener('click', e => {
-        const el = e.target.closest('.swara'); if(!el) return;
-        const id = el.dataset.swara; selectedCreatorSwaras.has(id) ? selectedCreatorSwaras.delete(id) : selectedCreatorSwaras.add(id); renderSwaraGrid('#creatorSwaraGrid', selectedCreatorSwaras);
-      });
-
       qs('#identifyBtn').addEventListener('click', identifyRaga);
-      qs('#clearBtn').addEventListener('click', () => { selectedFinderSwaras.clear(); renderSwaraGrid('#swaraGrid', selectedFinderSwaras); qs('#resultArea').innerHTML = '<div class="muted">Select swaras and identify.</div>'; });
-      qs('#generateBtn').addEventListener('click', generateRaga);
-      qs('#clearCreatorBtn').addEventListener('click', () => { selectedCreatorSwaras.clear(); qs('#creatorName').value=''; renderSwaraGrid('#creatorSwaraGrid', selectedCreatorSwaras); qs('#creatorResult').innerHTML = '<div class="muted">Generate a raga to see output.</div>'; });
-      qs('#quickRagas').addEventListener('click', e => {
-        const item = e.target.closest('.sidebar-item'); if(!item) return;
-        const name = item.dataset.raga; selectedFinderSwaras = new Set(RAGAS[name].swaras); renderSwaraGrid('#swaraGrid', selectedFinderSwaras); identifyRaga();
-      });
-
-      qs('#baseSwaraWrap').addEventListener('click', e => {
-        const b = e.target.closest('.swara-pill'); if(!b) return;
-        selectedExpr.push(b.dataset.sound); b.classList.add('active'); updateSwaraExpressionOutput();
-      });
-      qs('#exprWrap').addEventListener('click', e => {
-        const b = e.target.closest('.expr-pill'); if(!b) return;
-        selectedExpr.push(b.dataset.sound); b.classList.add('active'); updateSwaraExpressionOutput();
-      });
-
-      qs('#sacredSearch').addEventListener('input', e => renderSacredResults(e.target.value));
-
-      qs('#recordBtn').addEventListener('click', startRecording);
-      qs('#stopRecordBtn').addEventListener('click', stopRecording);
-      qs('#playRecordingBtn').addEventListener('click', playLatestRecording);
-      qs('#downloadRecordingBtn').addEventListener('click', downloadLatestRecording);
-
-      qs('#printBtn').addEventListener('click', () => window.print());
-      qs('#printBtn2').addEventListener('click', () => window.print());
-      qs('#saveBtn').addEventListener('click', saveCurrentView);
-      qs('#saveBtn2').addEventListener('click', saveCurrentView);
-      qs('#shareBtn').addEventListener('click', shareCurrentView);
-      qs('#shareBtn2').addEventListener('click', shareCurrentView);
+      qs('#clearBtn').addEventListener('click', ()=>{ selectedSwaras.clear(); renderSwaras(); qs('#ragaResult').textContent='Select swaras and click Identify.'; });
+      qs('#printBtn').addEventListener('click', ()=>window.print());
+      qs('#printBtn2').addEventListener('click', ()=>window.print());
+      qs('#saveBtn').addEventListener('click', saveCurrent);
+      qs('#saveBtn2').addEventListener('click', saveCurrent);
+      qs('#shareBtn').addEventListener('click', shareCurrent);
+      qs('#shareBtn2').addEventListener('click', shareCurrent);
     }
 
-    function init(){
-      renderSwaraGrid('#swaraGrid', selectedFinderSwaras);
-      renderSwaraGrid('#creatorSwaraGrid', selectedCreatorSwaras);
-      renderQuickRagas();
-      renderSwaraExpression();
-      bind();
-    }
-    init();
+    renderMudras();
+    renderShlokas();
+    renderMetaphors();
+    renderSwaras();
+    bind();
   </script>
 </body>
 </html>
