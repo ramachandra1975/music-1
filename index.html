@@ -491,11 +491,30 @@
   xrefSelectedRasa=null; xrefSelectedBeeja=null;
   buildXRefPills(); runXRef();
 }
-      function xrefSelectRasa(r){
-      xrefSelectedRasa=xrefSelectedRasa===r?null:r;
-      xrefSelectedSwara=null; xrefSelectedBeeja=null;
-      buildXRefPills(); runXRef();
-      }
+     function buildXRefPills(){
+  const sp=document.getElementById('xrefSwaraPills');
+  if(sp)sp.innerHTML=SWARAS.map(sw=>`<div class="xsp ${xrefSelectedSwara===sw.id?'on':''}" onclick="xrefSelectSwara('${sw.id}')"><span class="xsp-name">${sw.sargam}</span><span class="xsp-note">${sw.western}</span></div>`).join('');
+  const rp=document.getElementById('xrefRasaPills');
+  const rasas=['Bhakti','Karuna','Shringara','Veera','Shanta','Hasya','Adbhuta'];
+  if(rp)rp.innerHTML=rasas.map(r=>`<div class="xsp ${xrefSelectedRasa===r?'on':''}" onclick="xrefSelectRasa('${r}')"><span class="xsp-name">${r}</span></div>`).join('');
+  const bp=document.getElementById('xrefBeejaPills');
+  if(bp)bp.innerHTML=BEEJAS.map(b=>`<div class="xsp ${xrefSelectedBeeja===b.name?'on':''}" onclick="xrefSelectBeeja('${b.name.replace(/'/g,"\\'")}')"><span class="xsp-name">${b.symbol}</span><span class="xsp-note">${b.name.split(' ')[0]}</span></div>`).join('');
+}
+function xrefSelectSwara(id){
+  xrefSelectedSwara=xrefSelectedSwara===id?null:id;
+  xrefSelectedRasa=null; xrefSelectedBeeja=null;
+  buildXRefPills(); runXRef();
+}
+function xrefSelectRasa(r){
+  xrefSelectedRasa=xrefSelectedRasa===r?null:r;
+  xrefSelectedSwara=null; xrefSelectedBeeja=null;
+  buildXRefPills(); runXRef();
+}
+function xrefSelectBeeja(name){
+  xrefSelectedBeeja=xrefSelectedBeeja===name?null:name;
+  xrefSelectedSwara=null; xrefSelectedRasa=null;
+  buildXRefPills(); runXRef();
+}
       function xrefSelectBeeja(name){
       xrefSelectedBeeja=xrefSelectedBeeja===name?null:name;
       xrefSelectedSwara=null; xrefSelectedRasa=null;
